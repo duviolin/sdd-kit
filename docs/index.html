@@ -241,6 +241,61 @@
           virou prática nomeada, com a tese de que <i>a spec é o artefato durável — o código é
           regenerável</i>.</p>
 
+        <h4>Os padrões por trás (sem jargão)</h4>
+        <p>Todos esses nomes de três letras assustam, mas a ideia é simples. Pensa em
+          <b>construir uma casa</b>: você aprova a <b>planta</b> antes de assentar tijolo, mede cada
+          parede no <b>nível</b> enquanto constrói, combina com o cliente <b>na língua dele</b> o que
+          é "uma boa cozinha", e todo mundo na obra usa o <b>mesmo vocabulário</b> pra não haver
+          mal-entendido. Cada padrão abaixo é uma dessas camadas — eles não competem, se somam.</p>
+        <div class="callout">Regra de ouro: cada padrão existe para <b>tirar o "achismo"</b> de uma
+          etapa diferente — do requisito ao código.</div>
+        <div class="skills">
+          <div class="card">
+            <div class="head"><code class="name">TDD</code><span class="role">test-driven development</span></div>
+            <p><b>Escreva o teste antes do código.</b> Ele começa <i>vermelho</i> (o código nem existe),
+              você escreve o mínimo pra ficar <i>verde</i>, depois limpa sem quebrar (<i>refactor</i>).
+              O teste vira uma mini-spec de um comportamento — e uma rede de segurança que grita se
+              alguém quebrar aquilo depois.</p>
+            <div class="out"><b>Iniciante:</b> "provo o que quero antes de fazer". <b>Avançado:</b> o teste pressiona o design a ficar desacoplado e testável.</div>
+          </div>
+          <div class="card">
+            <div class="head"><code class="name">BDD</code><span class="role">behavior-driven development</span></div>
+            <p>Evolução do TDD que fala a <b>língua do negócio</b>, não do código. O comportamento
+              vira frases <b>Dado / Quando / Então</b> que produto, QA e dev leem do mesmo jeito —
+              acabando com o "eu tinha entendido diferente".</p>
+            <div class="out"><b>Iniciante:</b> "descrevo o comportamento em português". <b>Avançado:</b> cria uma <i>linguagem ubíqua</i> entre negócio e engenharia.</div>
+          </div>
+          <div class="card">
+            <div class="head"><code class="name">DDD</code><span class="role">domain-driven design</span></div>
+            <p>Modele o código em torno do <b>problema do negócio</b>, com o vocabulário de quem
+              entende do assunto e fronteiras claras entre partes. A regra mora <b>junto do dado</b>
+              que ela protege — não espalhada em "serviços" sem comportamento.</p>
+            <div class="out"><b>Iniciante:</b> "o código fala a língua do problema". <b>Avançado:</b> bounded contexts, agregados e invariantes.</div>
+          </div>
+          <div class="card">
+            <div class="head"><code class="name">Design by Contract</code></div>
+            <p>Cada função declara um <b>contrato</b>: o que exige na entrada (pré-condições), o que
+              garante na saída (pós-condições) e o que nunca pode ser violado (invariantes). Se o
+              contrato quebra, <b>falha alto e cedo</b> — em vez de propagar lixo.</p>
+            <div class="out"><b>Iniciante:</b> "combino as regras de uso". <b>Avançado:</b> estados inválidos viram irrepresentáveis por construção.</div>
+          </div>
+          <div class="card">
+            <div class="head"><code class="name">EARS</code><span class="role">requisitos sem ambiguidade</span></div>
+            <p>Um jeito de escrever requisito em <b>molde fixo</b>: "<i>QUANDO</i> &lt;gatilho&gt;,
+              <i>O SISTEMA DEVE</i> &lt;comportamento&gt;". Tira o "mais ou menos" da frase e deixa o
+              requisito pronto pra virar teste.</p>
+            <div class="out"><b>Iniciante:</b> "requisito em frase pronta". <b>Avançado:</b> cobre eventos, estados, opções e casos indesejados.</div>
+          </div>
+          <div class="card" style="background:var(--accent-soft); border-color:var(--accent)">
+            <div class="head"><code class="name" style="background:var(--accent);color:#fff">SDD</code><span class="role">o guarda-chuva</span></div>
+            <p>Junta todos: a <b>spec</b> é a fonte da verdade. <b>BDD</b> e <b>EARS</b> dão a
+              linguagem pra escrevê-la sem ambiguidade; <b>DDD</b> molda o código na língua do
+              negócio; <b>TDD</b> e <b>Design by Contract</b> são como você constrói e prova cada
+              pedaço. Nenhum substitui o outro — o SDD só orquestra tudo numa trilha auditável.</p>
+            <div class="out"><b>Em uma frase:</b> intenção primeiro, código derivado, cada passo provado.</div>
+          </div>
+        </div>
+
         <h4>Os famosos</h4>
         <div class="pills">
           <div class="pill"><code>GitHub Spec Kit</code><span>CLI <code class="inline">specify</code>; constitution → specify → clarify → plan → tasks → analyze → implement. Agnóstico de agente.</span></div>
