@@ -200,6 +200,7 @@
       <a href="#templates">Templates</a>
       <a href="#guidelines">Guidelines</a>
       <a href="#install">Instalar no Claude</a>
+      <a href="#preparar">Preparar o projeto</a>
       <a href="#run">Como rodar</a>
       <a href="#exemplo">Exemplo real</a>
     </nav>
@@ -546,6 +547,56 @@
 <span class="k">claude</span> plugin validate <span class="s">.</span></pre>
         <div class="callout"><b>Abra uma sessão nova.</b> O plugin é carregado no boot da sessão —
           as skills só aparecem numa sessão iniciada depois da instalação.</div>
+      </section>
+
+      <section id="preparar">
+        <h3 class="sec">Preparando o projeto</h3>
+        <p class="sec-note">constitution &amp; architecture · com a IA, uma vez por projeto</p>
+        <p>Antes da primeira feature, vale criar os dois documentos de projeto. A ideia central:
+          <b>você não escreve sozinho e a IA não inventa sozinha</b> — é uma conversa. A IA lê o
+          repositório, propõe, <b>pergunta o que só você sabe</b>, e você decide. Some o
+          documento em branco assustador.</p>
+
+        <h4>CONSTITUTION.md — os princípios (prescritivo)</h4>
+        <p>Diz o que <b>sempre/nunca</b> vale no projeto. Como a IA não pode adivinhar as suas
+          regras, aqui ela <b>puxa por perguntas</b>.</p>
+        <ol class="steps">
+          <li>Invoque <code class="inline">/sdd-kit:sdd-constitution</code> (ou diga <i>"vamos definir
+            os princípios/constituição deste projeto"</i>).</li>
+          <li>A IA lê o repo (linter, testes, estrutura) e <b>faz perguntas de decisão</b>, por exemplo:
+            <pre><span class="c"># o que a IA vai te perguntar</span>
+Qual a cobertura mínima de testes? (ex.: 80% / 100% da regra nova)
+Que tipos de teste são obrigatórios? (unit sempre? integração na borda?)
+Quais camadas/dependências são PROIBIDAS? (ex.: UI não chama repositório direto)
+Política de erro e de segredo? Padrão de branch e de review?
+O que BLOQUEIA um merge?</pre></li>
+          <li>Você responde (ou diz "usa um padrão sensato e eu ajusto"). A IA grava a
+            <code class="inline">CONSTITUTION.md</code> com <b>princípios verificáveis</b> — dá pra
+            dizer objetivamente se foram violados — e versiona.</li>
+          <li>Revise. Mudou algo? Rode a skill de novo: ela <b>atualiza com bump de versão</b>, não recria.</li>
+        </ol>
+        <div class="callout"><b>Dica pra repo novo/vazio:</b> a IA tem pouco código pra ler, então
+          a constituição vem mais das <b>suas respostas</b>. Num repo existente, ela infere muito do
+          que já está lá e você só confirma/ajusta.</div>
+
+        <h4>ARCHITECTURE.md — o retrato técnico (descritivo)</h4>
+        <p>Diz o que o sistema <b>é hoje</b> (não o ideal). Aqui a IA faz o trabalho pesado:
+          <b>ela explora e escreve o rascunho</b>, você valida.</p>
+        <ol class="steps">
+          <li>Invoque <code class="inline">/sdd-kit:sdd-discovery</code> (ou diga <i>"mapeia a
+            arquitetura deste projeto"</i>).</li>
+          <li>A IA <b>varre o código</b> — pastas, manifestos de dependência, entrypoints,
+            integrações, camadas — e monta o retrato <b>com base em evidência</b>, marcando o que é
+            gap em vez de inventar.</li>
+          <li>Ela grava a <code class="inline">ARCHITECTURE.md</code>: visão geral, componentes,
+            integrações, dependências, fluxos-chave, decisões e restrições.</li>
+          <li>Você <b>revisa e corrige</b> o que a leitura do código não captou (o "porquê" de
+            decisões, restrições de negócio). Evoluiu o sistema? Rode de novo pra atualizar.</li>
+        </ol>
+        <div class="callout"><b>Por que os dois?</b> A <code class="inline">CONSTITUTION.md</code> é a
+          <b>lei</b> (o que você promete seguir); a <code class="inline">ARCHITECTURE.md</code> é o
+          <b>mapa</b> (como o sistema está). Juntos, dão à IA o contexto pra escrever specs e planos
+          que respeitam o seu projeto — em vez de sugestões genéricas.</div>
       </section>
 
       <section id="run">
