@@ -1,0 +1,614 @@
+<title>sdd-kit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --paper:#f4f1ea; --surface:#fbfaf6; --surface-2:#efece3; --line:#d9d3c6;
+    --ink:#1b2130; --ink-soft:#4a5162; --muted:#767c88;
+    --accent:#2f6f5e; --accent-soft:#e2ede9; --accent-ink:#1d4c40;
+    --gate:#b26a2b; --gate-soft:#f3e7d8;
+    --code-bg:#1c2230; --code-ink:#e7e4da; --code-line:#2c3446;
+    --shadow:0 1px 2px rgba(27,33,48,.06), 0 8px 24px rgba(27,33,48,.06);
+    --radius:14px;
+    --f-display:"Archivo",system-ui,sans-serif;
+    --f-body:"IBM Plex Sans",system-ui,sans-serif;
+    --f-mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  }
+  :root:not([data-theme="light"]){ @media (prefers-color-scheme:dark){
+    --paper:#12151d; --surface:#171b25; --surface-2:#1e2330; --line:#2b3140;
+    --ink:#e9e7df; --ink-soft:#b3b8c4; --muted:#828997;
+    --accent:#5bb39a; --accent-soft:#1a2b28; --accent-ink:#8fd3bf;
+    --gate:#d59554; --gate-soft:#2c2318;
+    --code-bg:#0d1017; --code-ink:#dfe3ea; --code-line:#232a38;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 12px 30px rgba(0,0,0,.35);
+  }}
+  :root[data-theme="dark"]{
+    --paper:#12151d; --surface:#171b25; --surface-2:#1e2330; --line:#2b3140;
+    --ink:#e9e7df; --ink-soft:#b3b8c4; --muted:#828997;
+    --accent:#5bb39a; --accent-soft:#1a2b28; --accent-ink:#8fd3bf;
+    --gate:#d59554; --gate-soft:#2c2318;
+    --code-bg:#0d1017; --code-ink:#dfe3ea; --code-line:#232a38;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 12px 30px rgba(0,0,0,.35);
+  }
+
+  *{box-sizing:border-box}
+  body{background:var(--paper); color:var(--ink); font-family:var(--f-body);
+    line-height:1.6; -webkit-font-smoothing:antialiased;}
+  a{color:var(--accent-ink); text-underline-offset:3px; text-decoration-thickness:1px}
+
+  .wrap{max-width:1140px; margin:0 auto; padding:0 24px}
+  .grid{display:grid; grid-template-columns:230px minmax(0,1fr); gap:48px; align-items:start}
+  @media(max-width:860px){ .grid{grid-template-columns:1fr; gap:0} .toc{display:none} }
+
+  /* ---- header ---- */
+  header.top{border-bottom:1px solid var(--line); background:
+    linear-gradient(var(--surface),var(--surface));}
+  .top-inner{display:flex; align-items:center; justify-content:space-between; gap:16px;
+    padding:22px 24px; max-width:1140px; margin:0 auto}
+  .brand{display:flex; align-items:baseline; gap:12px}
+  .brand .logo{font-family:var(--f-mono); font-weight:600; font-size:14px;
+    color:var(--accent-ink); background:var(--accent-soft); border:1px solid var(--line);
+    padding:4px 9px; border-radius:8px}
+  .brand h1{font-family:var(--f-display); font-weight:800; font-size:20px; margin:0;
+    letter-spacing:-.01em}
+  .theme-btn{font-family:var(--f-mono); font-size:12px; color:var(--ink-soft);
+    background:var(--surface-2); border:1px solid var(--line); border-radius:8px;
+    padding:7px 12px; cursor:pointer}
+  .theme-btn:hover{color:var(--ink)}
+
+  /* ---- hero ---- */
+  .hero{padding:60px 0 46px; border-bottom:1px solid var(--line)}
+  .eyebrow{font-family:var(--f-mono); font-size:12px; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--accent-ink)}
+  .hero h2{font-family:var(--f-display); font-weight:800; font-size:clamp(30px,5vw,46px);
+    line-height:1.05; letter-spacing:-.02em; margin:14px 0 0; text-wrap:balance; max-width:16ch}
+  .hero p.lede{font-size:18px; color:var(--ink-soft); max-width:60ch; margin:18px 0 0}
+  .hero .meta{display:flex; flex-wrap:wrap; gap:10px; margin-top:26px}
+  .chip{font-family:var(--f-mono); font-size:12.5px; color:var(--ink-soft);
+    border:1px solid var(--line); background:var(--surface); border-radius:999px;
+    padding:6px 13px}
+  .chip b{color:var(--ink); font-weight:600}
+
+  /* ---- layout body ---- */
+  main{padding:44px 0 90px}
+  .toc{position:sticky; top:24px; font-family:var(--f-mono); font-size:13px}
+  .toc .lbl{text-transform:uppercase; letter-spacing:.12em; font-size:11px;
+    color:var(--muted); margin:0 0 12px}
+  .toc a{display:block; color:var(--ink-soft); text-decoration:none; padding:6px 0;
+    border-left:2px solid transparent; padding-left:12px; margin-left:-2px}
+  .toc a:hover{color:var(--ink)}
+  .toc a.active{color:var(--accent-ink); border-left-color:var(--accent)}
+
+  section{scroll-margin-top:24px}
+  section + section{margin-top:56px}
+  h3.sec{font-family:var(--f-display); font-weight:700; font-size:26px; letter-spacing:-.01em;
+    margin:0 0 6px}
+  .sec-note{color:var(--muted); font-family:var(--f-mono); font-size:12.5px;
+    text-transform:uppercase; letter-spacing:.08em; margin:0 0 20px}
+  p{max-width:66ch}
+  h4{font-family:var(--f-display); font-weight:700; font-size:16px; margin:26px 0 8px}
+
+  /* ---- flow diagram ---- */
+  .flow{width:100%; overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius);
+    background:var(--surface); padding:26px 20px; box-shadow:var(--shadow)}
+  .flow svg{display:block; min-width:720px; margin:0 auto}
+
+  /* ---- skill cards ---- */
+  .skills{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px}
+  @media(max-width:680px){ .skills{grid-template-columns:1fr} }
+  .card{border:1px solid var(--line); border-radius:var(--radius); background:var(--surface);
+    padding:20px; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:10px}
+  .card .head{display:flex; align-items:center; gap:10px}
+  .card .num{font-family:var(--f-mono); font-size:12px; color:var(--muted)}
+  .card code.name{font-family:var(--f-mono); font-weight:600; font-size:14.5px;
+    color:var(--accent-ink); background:var(--accent-soft); padding:3px 8px; border-radius:6px}
+  .card .role{font-family:var(--f-mono); font-size:11px; letter-spacing:.06em;
+    text-transform:uppercase; color:var(--muted)}
+  .card p{margin:0; font-size:14.5px; color:var(--ink-soft); max-width:none}
+  .card .out{font-family:var(--f-mono); font-size:12.5px; color:var(--ink);
+    border-top:1px dashed var(--line); padding-top:10px; margin-top:2px}
+  .card .out b{color:var(--accent-ink)}
+  .card.gate{border-color:var(--gate); background:var(--gate-soft)}
+  .card.gate .role{color:var(--gate)}
+
+  /* ---- code blocks ---- */
+  pre{background:var(--code-bg); color:var(--code-ink); border:1px solid var(--code-line);
+    border-radius:12px; padding:16px 18px; overflow-x:auto; font-family:var(--f-mono);
+    font-size:13px; line-height:1.7; margin:14px 0}
+  pre .c{color:#8a93a6}          /* comment */
+  pre .k{color:#e8b06b}          /* keyword/cmd */
+  pre .s{color:#7fd0b6}          /* string/path */
+  code.inline{font-family:var(--f-mono); font-size:.9em; background:var(--surface-2);
+    border:1px solid var(--line); padding:1px 6px; border-radius:6px}
+
+  /* ---- tree ---- */
+  .tree{font-family:var(--f-mono); font-size:13px; line-height:1.75; color:var(--ink-soft);
+    background:var(--surface); border:1px solid var(--line); border-radius:12px;
+    padding:18px 20px; overflow-x:auto; box-shadow:var(--shadow)}
+  .tree b{color:var(--ink)} .tree .a{color:var(--accent-ink)} .tree .g{color:var(--gate)}
+
+  /* ---- guideline pills ---- */
+  .pills{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
+  .pill{border:1px solid var(--line); background:var(--surface); border-radius:10px;
+    padding:12px 14px; box-shadow:var(--shadow); max-width:none}
+  .pill code{font-family:var(--f-mono); font-weight:600; font-size:13px; color:var(--ink)}
+  .pill span{display:block; font-size:12.5px; color:var(--muted); margin-top:3px}
+
+  /* ---- steps ---- */
+  ol.steps{counter-reset:s; list-style:none; padding:0; margin:16px 0; max-width:66ch}
+  ol.steps li{counter-increment:s; position:relative; padding:0 0 14px 40px}
+  ol.steps li::before{content:counter(s); position:absolute; left:0; top:-2px;
+    font-family:var(--f-mono); font-size:12px; font-weight:600; color:var(--accent-ink);
+    background:var(--accent-soft); border:1px solid var(--line); width:26px; height:26px;
+    display:grid; place-items:center; border-radius:8px}
+
+  .callout{border-left:3px solid var(--gate); background:var(--gate-soft);
+    border-radius:0 10px 10px 0; padding:14px 16px; margin:18px 0; font-size:14.5px}
+  .callout b{color:var(--ink)}
+
+  footer{border-top:1px solid var(--line); color:var(--muted); font-family:var(--f-mono);
+    font-size:12.5px; padding:26px 0 60px}
+  .kbd{font-family:var(--f-mono); font-size:12px; background:var(--surface-2);
+    border:1px solid var(--line); border-bottom-width:2px; border-radius:6px; padding:1px 7px}
+</style>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <span class="logo">sdd</span>
+      <h1>sdd-kit</h1>
+    </div>
+    <button class="theme-btn" id="themeBtn" type="button">tema: auto</button>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Spec-Driven Development · skills globais do Claude Code</div>
+    <h2>Da ideia ao merge, com trilha versionada.</h2>
+    <p class="lede">Nove skills <code class="inline">sdd-*</code> que padronizam o mesmo fluxo
+      em qualquer projeto: definir princípios, especificar em EARS, aprovar, planejar, quebrar em
+      tasks, checar consistência, implementar com evidência e validar contra o diff — com trava de
+      execução e cada passo registrado no próprio repositório.</p>
+    <div class="meta">
+      <span class="chip"><b>9</b> skills</span>
+      <span class="chip"><b>7</b> templates</span>
+      <span class="chip"><b>12</b> guidelines</span>
+      <span class="chip">trava de <b>execução</b></span>
+      <span class="chip">instala como <b>plugin</b></span>
+      <span class="chip">roda em <b>qualquer projeto</b></span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="grid">
+    <nav class="toc" aria-label="Índice">
+      <p class="lbl">Nesta página</p>
+      <a href="#overview">O que é</a>
+      <a href="#sobre">Sobre o SDD</a>
+      <a href="#flow">O fluxo</a>
+      <a href="#skills">As 9 skills</a>
+      <a href="#artifacts">Artefatos & auditoria</a>
+      <a href="#templates">Templates</a>
+      <a href="#guidelines">Guidelines</a>
+      <a href="#install">Instalar no Claude</a>
+      <a href="#run">Como rodar</a>
+      <a href="#exemplo">Exemplo real</a>
+    </nav>
+
+    <main>
+      <section id="overview">
+        <h3 class="sec">O que é</h3>
+        <p class="sec-note">problema → padrão portátil</p>
+        <p>O <b>sdd-kit</b> transforma o Spec-Driven Development num conjunto de skills que o
+          Claude Code carrega automaticamente em toda sessão. Em vez de reexplicar o processo a
+          cada projeto, você invoca a skill certa e ela gera o artefato certo, no lugar certo.</p>
+        <p>A ideia central é <b>auditoria persistida</b>: o repositório mostra todo o caminho
+          feito — princípios, requisitos, design, tasks, veredito — sem depender do histórico da conversa. Qualquer
+          pessoa, agente ou ferramenta consegue auditar depois, lendo arquivos versionados.</p>
+        <p>Tudo vive num <b>plugin do Claude Code</b>: as <b>skills</b> (<code class="inline">skills/sdd-*</code>),
+          os <b>assets</b> (<code class="inline">sdd/</code> — templates e guidelines que as skills
+          reaproveitam via <code class="inline">${CLAUDE_PLUGIN_ROOT}</code>) e o <b>hook de trava</b>.
+          Instala com <code class="inline">/plugin</code>, sem copiar nada à mão.</p>
+      </section>
+
+      <section id="sobre">
+        <h3 class="sec">Sobre o SDD</h3>
+        <p class="sec-note">conceito · origem · diferencial</p>
+
+        <h4>O que é</h4>
+        <p>Spec-Driven Development inverte quem manda no processo. No modelo tradicional, o
+          <b>código</b> é a fonte da verdade e a documentação corre atrás. No SDD, a
+          <b>especificação</b> é a fonte da verdade e o código é um artefato derivado dela. Você não
+          pede código direto: descreve com precisão <b>o quê</b> e <b>por quê</b> — de forma
+          verificável — e o agente deriva o <b>como</b>. A spec é viva, versionada, e cada critério
+          de aceite vira prova (teste/evidência).</p>
+
+        <h4>De onde veio</h4>
+        <p>A ideia de "a especificação guia a construção" é antiga — vem da engenharia de requisitos
+          e de práticas como <b>Design by Contract</b> (Bertrand Meyer), <b>TDD</b> (Kent Beck),
+          <b>BDD</b> (Dan North), <b>DDD</b> (Eric Evans) e os <b>ADRs/RFCs</b>. O que mudou foi a
+          <b>era dos agentes de IA (2024–2025)</b>: com LLMs escrevendo código rápido, o gargalo
+          deixou de ser digitar e passou a ser <b>especificar intenção sem ambiguidade</b>. Aí o SDD
+          virou prática nomeada, com a tese de que <i>a spec é o artefato durável — o código é
+          regenerável</i>.</p>
+
+        <h4>Os famosos</h4>
+        <div class="pills">
+          <div class="pill"><code>GitHub Spec Kit</code><span>CLI <code class="inline">specify</code>; constitution → specify → clarify → plan → tasks → analyze → implement. Agnóstico de agente.</span></div>
+          <div class="pill"><code>Amazon Kiro</code><span>IDE agêntico da AWS: requirements (EARS) → design → tasks, com steering files e hooks.</span></div>
+          <div class="pill"><code>Tessl</code><span>Abordagem spec-centric: a spec como artefato central, com registro/versionamento.</span></div>
+        </div>
+
+        <h4>Por que usar</h4>
+        <ul style="max-width:66ch; padding-left:20px; margin:8px 0; color:var(--ink-soft)">
+          <li>Erra no barato (texto) antes de gastar no caro (execução/código).</li>
+          <li>Tira a ambiguidade — a IA para de adivinhar escopo e alucinar features.</li>
+          <li>Output revisável: produto e engenharia revisam intenção antes de qualquer linha.</li>
+          <li>Trilha auditável no repo, independente do histórico da conversa.</li>
+          <li>Rastreabilidade ponta a ponta: requisito → critério → task → evidência.</li>
+        </ul>
+
+        <h4>Quando usar</h4>
+        <div class="skills">
+          <div class="card">
+            <div class="head"><code class="name">use</code></div>
+            <p>Feature nova, mudança de comportamento/contrato/API, trabalho com mais de uma pessoa,
+              contexto que exige auditoria, e sempre que a IA for implementar algo não-trivial.</p>
+          </div>
+          <div class="card">
+            <div class="head"><code class="name" style="background:var(--gate-soft); color:var(--gate)">evite</code></div>
+            <p>Spike/protótipo descartável, correção de uma linha óbvia, exploração pura. SDD é peso
+              proporcional — para o trivial, ele atrapalha.</p>
+          </div>
+        </div>
+
+        <h4>Nosso diferencial · por que este kit existe</h4>
+        <p>Spec Kit e Kiro são ótimos, mas genéricos. Este kit pega a maturidade da comunidade e soma
+          <b>auditoria persistida + governança de entrega + disciplina de evidência</b>, num pacote
+          que instala em um comando e roda em qualquer repositório:</p>
+        <ul style="max-width:66ch; padding-left:20px; margin:8px 0; color:var(--ink-soft)">
+          <li><b>Nativo no Claude Code, em qualquer projeto</b> — skills globais, disparo por linguagem natural, nada copiado por repo.</li>
+          <li><b>Veredito de saída auditável</b> (<code class="inline">acceptance.md</code>) contra o diff da branch — o que Spec Kit/Kiro não têm.</li>
+          <li><b>Constitution como lei do projeto</b> — princípios inegociáveis que gateiam todas as fases.</li>
+          <li><b>Gate de consistência</b> (<code class="inline">sdd-analyze</code>) antes de gastar execução.</li>
+          <li><b>Disciplina de evidência</b> — nenhuma task fecha sem prova objetiva colada.</li>
+          <li><b>EARS + Gherkin</b>: requisito sem ambiguidade e critério verificável, juntos.</li>
+        </ul>
+      </section>
+
+      <section id="flow">
+        <h3 class="sec">O fluxo</h3>
+        <p class="sec-note">pipeline com gate de aprovação humana</p>
+        <div class="flow" style="display:block; padding:24px 22px">
+          <div style="font-family:var(--f-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:10px">Nível projeto · 1x (opcional)</div>
+          <div style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:22px">
+            <span style="display:flex; flex-direction:column; gap:2px; border:1px solid var(--line); background:var(--surface-2); color:var(--ink); border-radius:10px; padding:8px 12px; font-family:var(--f-mono); font-size:12.5px; font-weight:600">sdd-constitution<small style="font-weight:400; font-size:10.5px; color:var(--muted)">CONSTITUTION.md</small></span>
+            <span style="display:flex; flex-direction:column; gap:2px; border:1px solid var(--line); background:var(--surface-2); color:var(--ink); border-radius:10px; padding:8px 12px; font-family:var(--f-mono); font-size:12.5px; font-weight:600">sdd-discovery<small style="font-weight:400; font-size:10.5px; color:var(--muted)">ARCHITECTURE.md</small></span>
+          </div>
+          <div style="font-family:var(--f-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:10px">Por feature</div>
+          <div style="display:flex; flex-wrap:wrap; align-items:stretch; gap:6px">
+            <span style="display:flex; flex-direction:column; gap:2px; border:1px solid var(--accent); background:var(--accent-soft); color:var(--accent-ink); border-radius:10px; padding:8px 12px; font-family:var(--f-mono); font-size:12.5px; font-weight:600">sdd-requirements<small style="font-weight:400; font-size:10.5px">requirements.md · EARS</small></span>
+            <span style="align-self:center; color:var(--muted); font-family:var(--f-mono)">→</span>
+            <span style="display:flex; flex-direction:column; gap:2px; border:1px solid var(--gate); background:var(--gate-soft); color:var(--gate); border-radius:10px; padding:8px 12px; font-family:var(--f-mono); font-size:12.5px; font-weight:600">✋ aprovação<small style="font-weight:400; font-size:10.5px">humana</small></span>
+            <span style="align-self:center; color:var(--muted); font-family:var(--f-mono)">→</span>
+            <span style="display:flex; flex-direction:column; gap:2px; border:1px solid var(--accent); background:var(--accent-soft); color:var(--accent-ink); border-radius:10px; padding:8px 12px; font-family:var(--f-mono); font-size:12.5px; font-weight:600">sdd-design<small style="font-weight:400; font-size:10.5px">design.md</small></span>
+            <span style="align-self:center; color:var(--muted); font-family:var(--f-mono)">→</span>
+            <span style="display:flex; flex-direction:column; gap:2px; border:1px solid var(--accent); background:var(--accent-soft); color:var(--accent-ink); border-radius:10px; padding:8px 12px; font-family:var(--f-mono); font-size:12.5px; font-weight:600">sdd-backlog<small style="font-weight:400; font-size:10.5px">tasks.md</small></span>
+            <span style="align-self:center; color:var(--muted); font-family:var(--f-mono)">→</span>
+            <span style="display:flex; flex-direction:column; gap:2px; border:1px dashed var(--accent); background:var(--accent-soft); color:var(--accent-ink); border-radius:10px; padding:8px 12px; font-family:var(--f-mono); font-size:12.5px; font-weight:600">sdd-analyze<small style="font-weight:400; font-size:10.5px">gate de consistência</small></span>
+            <span style="align-self:center; color:var(--muted); font-family:var(--f-mono)">→</span>
+            <span style="display:flex; flex-direction:column; gap:2px; border:1px solid var(--accent); background:var(--accent-soft); color:var(--accent-ink); border-radius:10px; padding:8px 12px; font-family:var(--f-mono); font-size:12.5px; font-weight:600">sdd-delivery<small style="font-weight:400; font-size:10.5px">1 task/vez · evidência</small></span>
+            <span style="align-self:center; color:var(--muted); font-family:var(--f-mono)">→</span>
+            <span style="display:flex; flex-direction:column; gap:2px; border:1px solid var(--line); background:var(--surface-2); color:var(--ink); border-radius:10px; padding:8px 12px; font-family:var(--f-mono); font-size:12.5px; font-weight:600">sdd-acceptance<small style="font-weight:400; font-size:10.5px; color:var(--muted)">acceptance.md</small></span>
+          </div>
+          <div style="font-family:var(--f-mono); font-size:10.5px; color:var(--muted); margin-top:12px">delivery repete uma task por turno até fechar o backlog</div>
+        </div>
+        <p style="margin-top:18px">O <code class="inline">sdd-discovery</code> é opcional e roda
+          uma vez por projeto. O coração é linear: <b>requirements → aprovação → design → backlog →
+          delivery → acceptance</b>. O <code class="inline">sdd-delivery</code> repete, uma task por
+          turno, até fechar o backlog; então o <code class="inline">sdd-acceptance</code> emite o veredito.</p>
+        <div class="callout"><b>O gate é a regra de ouro.</b> A <code class="inline">sdd-requirements</code>
+          sempre para e pede um "aprovado" humano explícito. Ela nunca gera plano nem código no
+          mesmo turno — é o ponto onde produto decide antes de engenharia executar.</div>
+      </section>
+
+      <section id="skills">
+        <h3 class="sec">As 9 skills</h3>
+        <p class="sec-note">o que cada uma faz e o que produz</p>
+        <div class="skills">
+          <div class="card">
+            <div class="head"><span class="num">01</span><code class="name">sdd-constitution</code></div>
+            <div class="role">princípios · opcional · 1x</div>
+            <p>Define os princípios inegociáveis do projeto — padrões de código/teste, política de
+              erro e segurança, camadas proibidas, processo. É prescritivo e governa todas as fases.</p>
+            <div class="out">→ <b>CONSTITUTION.md</b> na raiz (1 por projeto, versionado)</div>
+          </div>
+
+          <div class="card">
+            <div class="head"><span class="num">02</span><code class="name">sdd-discovery</code></div>
+            <div class="role">baseline · opcional</div>
+            <p>Explora o projeto real (pastas, deps, integrações, camadas) e cria/atualiza um
+              retrato técnico atual — não aspiracional. É descritivo, complementa a constitution.</p>
+            <div class="out">→ <b>ARCHITECTURE.md</b> na raiz (1 por projeto, documento vivo)</div>
+          </div>
+
+          <div class="card">
+            <div class="head"><span class="num">03</span><code class="name">sdd-requirements</code></div>
+            <div class="role">especificar · gatilho de entrada</div>
+            <p>Transforma história, descrição, ticket ou código em requisitos: problema, escopo
+              dentro/fora, requisitos em <b>EARS</b>, critérios de aceite (Dado/Quando/Então),
+              premissas. Faz o <i>clarify</i> e cria a pasta numerada da feature.</p>
+            <div class="out">→ <b>specs/&lt;NNN&gt;-&lt;slug&gt;/requirements.md</b> · status <code class="inline">awaiting_approval</code></div>
+          </div>
+
+          <div class="card gate">
+            <div class="head"><span class="num">✋</span><strong style="font-family:var(--f-display)">Aprovação humana</strong></div>
+            <div class="role">gate obrigatório</div>
+            <p>Não é uma skill — é a parada. Os requisitos são resumidos e submetidos a você. Só um
+              "aprovado"/"segue" explícito libera o próximo passo. Sem branch, sem código antes disso.</p>
+            <div class="out" style="border-color:var(--gate)">requirements.md → <b>approved</b></div>
+          </div>
+
+          <div class="card">
+            <div class="head"><span class="num">04</span><code class="name">sdd-design</code></div>
+            <div class="role">planejar · pós-aprovação</div>
+            <p>Converte os requisitos aprovados em estratégia técnica: impacto por arquivo,
+              dependências, riscos, ordem de execução e como cada critério será provado. Recusa
+              rodar sem aprovação e respeita a constitution.</p>
+            <div class="out">→ <b>design.md</b> · cita as guidelines aplicáveis</div>
+          </div>
+
+          <div class="card">
+            <div class="head"><span class="num">05</span><code class="name">sdd-backlog</code></div>
+            <div class="role">decompor</div>
+            <p>Quebra o design em tasks executáveis e verificáveis. Cada task carrega origem
+              (rastreio ao requisito), evidência esperada, bloqueios, status e marcador <code class="inline">[P]</code> de paralelismo.</p>
+            <div class="out">→ <b>tasks.md</b> · nada órfão, tudo rastreia a um critério</div>
+          </div>
+
+          <div class="card">
+            <div class="head"><span class="num">06</span><code class="name">sdd-analyze</code></div>
+            <div class="role">consistência · gate</div>
+            <p>Checa coerência entre requirements ↔ design ↔ tasks antes de gastar execução: tudo
+              coberto, nada órfão, nada fora do escopo, nada contra a constitution. Não escreve código.</p>
+            <div class="out">→ veredito <b>consistente / inconsistente</b> (bloqueia se vermelho)</div>
+          </div>
+
+          <div class="card">
+            <div class="head"><span class="num">07</span><code class="name">sdd-delivery</code></div>
+            <div class="role">executar · 1 task/turno</div>
+            <p>Implementa a partir dos artefatos reais, aplicando as guidelines (TDD primeiro).
+              Só marca uma task como <code class="inline">done</code> com evidência objetiva colada —
+              teste verde, saída, diff.</p>
+            <div class="out">→ código na branch + <b>evidência</b> em cada task</div>
+          </div>
+
+          <div class="card">
+            <div class="head"><span class="num">08</span><code class="name">sdd-acceptance</code></div>
+            <div class="role">validar · veredito</div>
+            <p>Confere a entrega contra o diff da branch: escopo bate com os requisitos? cobertura
+              contra o piso da constitution? caminhos de erro e NFR provados? Emite o veredito auditável.</p>
+            <div class="out">→ <b>acceptance.md</b> · aprovado / com-ressalvas / reprovado</div>
+          </div>
+
+          <div class="card">
+            <div class="head"><span class="num">✳</span><code class="name">sdd-state</code></div>
+            <div class="role">transversal · trava &amp; retomada</div>
+            <p>Mantém o <code class="inline">STATE.md</code> (o que está rodando, onde paramos) e o
+              <code class="inline">.sdd/lock</code>: uma feature ativa por vez. O hook
+              <code class="inline">sdd-lock</code> bloqueia escrita fora da branch dona — duas janelas
+              não se sobrescrevem.</p>
+            <div class="out">→ <b>STATE.md</b> + <b>.sdd/lock</b> · lock advisory reforçada</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="artifacts">
+        <h3 class="sec">Artefatos & auditoria</h3>
+        <p class="sec-note">a trilha que fica no repositório</p>
+        <p>Cada feature vive numa pasta numerada dentro de <code class="inline">specs/</code> do
+          projeto-alvo. O número <code class="inline">&lt;NNN&gt;</code> é o próximo livre; o
+          <code class="inline">&lt;slug&gt;</code> é o título em kebab-case. A
+          <code class="inline">CONSTITUTION.md</code> e o <code class="inline">ARCHITECTURE.md</code>
+          ficam na raiz, únicos por projeto.</p>
+        <div class="tree">&lt;projeto&gt;/
+├── <b>CONSTITUTION.md</b>            <span style="color:var(--muted)"># princípios inegociáveis (sdd-constitution)</span>
+├── <b>ARCHITECTURE.md</b>            <span style="color:var(--muted)"># visão técnica real (sdd-discovery)</span>
+├── <b>STATE.md</b>                   <span style="color:var(--muted)"># o que roda + histórico (sdd-state)</span>
+├── <b>.sdd/lock</b>                  <span style="color:var(--muted)"># trava, reforçada pelo hook sdd-lock</span>
+└── <b>specs/</b>
+    └── <span class="a">001-exportar-relatorio/</span>
+        ├── <b>requirements.md</b>            <span style="color:var(--muted)"># o quê e por quê + critérios</span>
+        ├── <b>design.md</b>            <span style="color:var(--muted)"># estratégia técnica + estratégia de testes</span>
+        ├── <b>tasks.md</b>           <span style="color:var(--muted)"># tarefas + casos de borda + evidência</span>
+        └── <span class="g">acceptance.md</span>         <span style="color:var(--muted)"># veredito final da entrega</span></div>
+        <p style="margin-top:16px">Cada arquivo tem um cabeçalho <code class="inline">Status:</code>.
+          O estado do trabalho vive no arquivo, não na conversa — é isso que torna a auditoria
+          independente do chat.</p>
+      </section>
+
+      <section id="templates">
+        <h3 class="sec">Templates</h3>
+        <p class="sec-note">sdd/templates/ (no plugin)</p>
+        <p>Esqueletos que as skills copiam e preenchem, garantindo que toda feature siga a mesma
+          estrutura. São sete:</p>
+        <div class="pills">
+          <div class="pill"><code>CONSTITUTION.md</code><span>princípios inegociáveis, piso de QA, restrições</span></div>
+          <div class="pill"><code>ARCHITECTURE.md</code><span>componentes, integrações, decisões, restrições</span></div>
+          <div class="pill"><code>STATE.md</code><span>o que roda, etapa, branch, dono + histórico</span></div>
+          <div class="pill"><code>requirements.md</code><span>problema, escopo, requisitos EARS, critérios</span></div>
+          <div class="pill"><code>design.md</code><span>estratégia, impacto, riscos, validação planejada</span></div>
+          <div class="pill"><code>tasks.md</code><span>tasks com origem, evidência esperada e status</span></div>
+          <div class="pill"><code>acceptance.md</code><span>escopo × requisitos, cobertura, diff, veredito</span></div>
+        </div>
+      </section>
+
+      <section id="guidelines">
+        <h3 class="sec">Guidelines</h3>
+        <p class="sec-note">sdd/guidelines/ · princípios que design e delivery citam</p>
+        <p>Referências curtas de engenharia. O <code class="inline">sdd-design</code> aponta quais
+          importam para a feature e onde; o <code class="inline">sdd-delivery</code> as aplica.</p>
+        <div class="pills">
+          <div class="pill"><code>tdd</code><span>teste que falha → código → refactor</span></div>
+          <div class="pill"><code>test-strategy</code><span>pirâmide, nível por CA, borda/negativo/erro</span></div>
+          <div class="pill"><code>solid</code><span>5 princípios de OO sustentável</span></div>
+          <div class="pill"><code>defensive-programming</code><span>rejeite o inválido na borda (fail fast)</span></div>
+          <div class="pill"><code>rich-domain</code><span>regra junto do dado, não em serviços</span></div>
+          <div class="pill"><code>dry</code><span>uma fonte da verdade por conhecimento</span></div>
+          <div class="pill"><code>kiss</code><span>a solução mais simples que resolve</span></div>
+          <div class="pill"><code>yagni</code><span>só o requisito atual, nada especulativo</span></div>
+          <div class="pill"><code>clean-code</code><span>nomes e legibilidade para quem lê depois</span></div>
+          <div class="pill"><code>error-handling</code><span>erro é contrato, não detalhe</span></div>
+          <div class="pill"><code>secure-by-default</code><span>o caminho fácil é o caminho seguro</span></div>
+          <div class="pill"><code>code-review</code><span>o que autor entrega, o que revisor checa</span></div>
+        </div>
+      </section>
+
+      <section id="install">
+        <h3 class="sec">Instalar no Claude</h3>
+        <p class="sec-note">plugin do Claude Code · uma vez por máquina</p>
+        <p>O sdd-kit é um <b>plugin + marketplace</b> do Claude Code. Instale de dentro do Claude
+          Code, sem mexer em <code class="inline">~/.claude</code> na mão:</p>
+        <pre><span class="c"># de dentro do Claude Code</span>
+/plugin marketplace add <span class="s">duviolin/sdd-kit</span>
+/plugin install <span class="s">sdd-kit@sdd-kit</span></pre>
+        <p>As skills ficam disponíveis como <code class="inline">/sdd-kit:sdd-requirements</code>
+          (e disparam também por linguagem natural); a trava <code class="inline">sdd-lock</code> é
+          ativada pelo próprio plugin. Update e uninstall são gerenciados pelo
+          <code class="inline">/plugin</code>.</p>
+        <p>Para <b>testar localmente</b> sem instalar, a partir do clone do repo:</p>
+        <pre><span class="k">claude</span> --plugin-dir <span class="s">.</span>
+<span class="c"># validar o pacote antes de publicar:</span>
+<span class="k">claude</span> plugin validate <span class="s">.</span></pre>
+        <div class="callout"><b>Abra uma sessão nova.</b> O plugin é carregado no boot da sessão —
+          as skills só aparecem numa sessão iniciada depois da instalação.</div>
+      </section>
+
+      <section id="run">
+        <h3 class="sec">Como rodar</h3>
+        <p class="sec-note">o ciclo de uma feature</p>
+        <p>Dentro de qualquer projeto, numa sessão nova do Claude Code:</p>
+        <ol class="steps">
+          <li>Descreva a feature — ou invoque <code class="inline">/sdd-kit:sdd-requirements</code>. Ela cria
+            <code class="inline">specs/001-&lt;slug&gt;/requirements.md</code> e <b>para pedindo aprovação</b>.</li>
+          <li>Revise os requisitos. Responda <span class="kbd">aprovado</span> (ou peça ajustes). Só então
+            o fluxo avança.</li>
+          <li><code class="inline">/sdd-kit:sdd-design</code> gera o <code class="inline">design.md</code>;
+            <code class="inline">/sdd-kit:sdd-backlog</code> gera o <code class="inline">tasks.md</code>.</li>
+          <li><code class="inline">/sdd-kit:sdd-analyze</code> confere a consistência entre requirements,
+            design e tasks antes de codar — bloqueia se algo não bate.</li>
+          <li><code class="inline">/sdd-kit:sdd-delivery</code> executa uma task por turno, com teste e
+            evidência. Repita até fechar o backlog.</li>
+          <li><code class="inline">/sdd-kit:sdd-acceptance</code> confere contra o diff da branch — cobertura
+            contra o piso da constitution, caminhos de erro e NFR provados — e escreve o
+            <code class="inline">acceptance.md</code> com o veredito.</li>
+        </ol>
+        <p style="margin-top:4px"><b>Trava &amp; retomada:</b> ao começar, o
+          <code class="inline">/sdd-kit:sdd-state</code> registra a feature ativa no
+          <code class="inline">STATE.md</code> e crava o <code class="inline">.sdd/lock</code>. O hook
+          <code class="inline">sdd-lock</code> impede outra janela de escrever fora da branch dona;
+          quando voltar, <i>"onde paramos?"</i> lê o <code class="inline">STATE.md</code> e retoma no ponto.</p>
+        <p>As skills também disparam sozinhas por linguagem natural — dizer <i>"quero uma feature
+          de X"</i> tende a acionar a <code class="inline">sdd-requirements</code>; <i>"implementa"</i> ou
+          <i>"segue"</i> aciona a <code class="inline">sdd-delivery</code>. Invocar por
+          <code class="inline">/nome</code> é só a forma explícita.</p>
+      </section>
+
+      <section id="exemplo">
+        <h3 class="sec">Exemplo real</h3>
+        <p class="sec-note">do pedido cru ao merge · resumido</p>
+        <p>Um pedido de produto de uma linha vira uma entrega auditável, sem pular etapas nem
+          gastar execução em cima de um pedido ainda ambíguo.</p>
+
+        <div class="callout"><b>Você:</b> <i>"preciso de um campo novo no perfil do usuário
+          para cadastrar um segundo telefone"</i></div>
+
+        <ol class="steps">
+          <li><b>A <code class="inline">sdd-requirements</code> dispara</b> (o "preciso de…" já aciona).
+            Ela lê a <code class="inline">CONSTITUTION.md</code> e a <code class="inline">ARCHITECTURE.md</code>,
+            descobre onde vive o perfil e como telefones são validados hoje.</li>
+          <li><b>Clarify — ela te devolve perguntas antes de escrever nada:</b> é opcional? tem tipo
+            (celular/fixo)? qual principal? valida DDD/país? aceita duplicado? impacta SMS/notificação?
+            LGPD? Você responde.</li>
+          <li><b>Ela grava</b> <code class="inline">specs/001-segundo-telefone/requirements.md</code>
+            com <code class="inline">Status: awaiting_approval</code>:
+            <pre><span class="c"># escopo</span>
+dentro: campo "telefone secundário" opcional no perfil
+fora:   verificação por SMS · telefone como login
+
+<span class="c"># requisitos (EARS)</span>
+R1  WHEN o usuário salva com telefone secundário válido,
+    THE SYSTEM SHALL persistir no formato E.164.
+R2  IF o secundário for igual ao primário,
+    THEN THE SYSTEM SHALL rejeitar com mensagem clara.
+RN1 THE SYSTEM SHALL tratar o número como dado pessoal (LGPD).
+
+<span class="c"># critérios de aceite</span>
+CA1 Dado um perfil sem 2º telefone, quando informo um número
+    válido e salvo, então ele aparece salvo.
+CA2 Dado um número inválido, quando salvo, então vejo erro
+    e nada é gravado.</pre></li>
+          <li><b>GATE.</b> Ela <b>para</b> e resume, pedindo aprovação. Nada de design, branch ou
+            código ainda. <span class="kbd">aprovado</span> → esta é a sua "história aprovada".</li>
+          <li><code class="inline">sdd-design</code> vira <code class="inline">design.md</code>
+            (onde tocar, riscos, como provar cada CA) →
+            <code class="inline">sdd-backlog</code> quebra em <code class="inline">tasks.md</code>
+            (com <code class="inline">[P]</code> onde dá pra paralelizar).</li>
+          <li><code class="inline">sdd-analyze</code> confere: todo CA tem task? nada fora do escopo?
+            nada contra a constitution? <b>Consistente</b> → libera.</li>
+          <li><code class="inline">sdd-delivery</code> faz <b>uma task por turno</b> com TDD e cola a
+            evidência (teste verde). Repete até fechar o backlog.</li>
+          <li><code class="inline">sdd-acceptance</code> confere o diff da branch contra os requisitos
+            e escreve <code class="inline">acceptance.md</code> → <b>veredito aprovado</b>, pronto pra merge.</li>
+        </ol>
+
+        <p style="margin-top:16px">No fim, o repositório carrega a trilha inteira — do pedido de uma
+          linha ao veredito — sem depender do histórico da conversa:</p>
+        <div class="tree">specs/<span class="a">001-segundo-telefone/</span>
+├── <b>requirements.md</b>   <span style="color:var(--muted)"># approved</span>
+├── <b>design.md</b>         <span style="color:var(--muted)"># done</span>
+├── <b>tasks.md</b>          <span style="color:var(--muted)"># todas done + evidência</span>
+└── <span class="g">acceptance.md</span>     <span style="color:var(--muted)"># veredito: aprovado</span></div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">sdd-kit · Spec-Driven Development portátil para o Claude Code · fonte em
+    plugin do Claude Code · instalação via /plugin</div>
+</footer>
+
+<script>
+  // theme toggle: auto → light → dark → auto
+  (function(){
+    var order=["auto","light","dark"], i=0, root=document.documentElement, btn=document.getElementById("themeBtn");
+    try{ var saved=localStorage.getItem("sdd-theme"); if(saved){ i=Math.max(0,order.indexOf(saved)); } }catch(e){}
+    function apply(){
+      var m=order[i];
+      if(m==="auto"){ root.removeAttribute("data-theme"); } else { root.setAttribute("data-theme",m); }
+      btn.textContent="tema: "+m;
+      try{ localStorage.setItem("sdd-theme",m); }catch(e){}
+    }
+    apply();
+    btn.addEventListener("click",function(){ i=(i+1)%order.length; apply(); });
+  })();
+
+  // scrollspy for TOC
+  (function(){
+    var links=[].slice.call(document.querySelectorAll(".toc a"));
+    var map={}; links.forEach(function(a){ map[a.getAttribute("href").slice(1)]=a; });
+    var obs=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(e.isIntersecting){
+          links.forEach(function(l){ l.classList.remove("active"); });
+          if(map[e.target.id]) map[e.target.id].classList.add("active");
+        }
+      });
+    },{rootMargin:"-20% 0px -70% 0px"});
+    document.querySelectorAll("section[id]").forEach(function(s){ obs.observe(s); });
+  })();
+</script>

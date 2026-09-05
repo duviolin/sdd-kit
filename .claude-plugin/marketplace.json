@@ -1,0 +1,19 @@
+{
+  "name": "sdd-kit",
+  "owner": {
+    "name": "Eduardo Lima"
+  },
+  "metadata": {
+    "description": "Marketplace do sdd-kit — Spec-Driven Development portátil para o Claude Code."
+  },
+  "plugins": [
+    {
+      "name": "sdd-kit",
+      "source": ".",
+      "description": "Spec-Driven Development portátil: 9 skills sdd-* + templates, guidelines e trava de execução, com auditoria persistida no repo.",
+      "version": "1.0.0",
+      "category": "workflow",
+      "keywords": ["sdd", "spec-driven-development", "workflow", "qa"]
+    }
+  ]
+}

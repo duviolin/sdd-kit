@@ -1,0 +1,12 @@
+{
+  "name": "sdd-kit",
+  "description": "Spec-Driven Development portátil: 9 skills sdd-* (constitution, discovery, requirements, design, backlog, analyze, delivery, acceptance, state) + templates, guidelines e trava de execução. Roda em qualquer projeto com auditoria persistida no repo.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Eduardo Lima"
+  },
+  "homepage": "https://github.com/duviolin/sdd-kit",
+  "repository": "https://github.com/duviolin/sdd-kit",
+  "license": "MIT",
+  "keywords": ["sdd", "spec-driven-development", "workflow", "skills", "qa", "governance"]
+}
