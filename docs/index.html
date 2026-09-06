@@ -669,21 +669,24 @@
       <section id="install">
         <h3 class="sec">Instalar no Claude</h3>
         <p class="sec-note">plugin do Claude Code · uma vez por máquina</p>
-        <p>O sdd-kit é um <b>plugin + marketplace</b> do Claude Code. Instale de dentro do Claude
-          Code, sem mexer em <code class="inline">~/.claude</code> na mão:</p>
-        <pre><span class="c"># de dentro do Claude Code</span>
+        <p>O sdd-kit é um <b>plugin + marketplace</b> do Claude Code. Cole os <b>dois comandos</b>
+          abaixo <b>dentro de uma sessão do Claude Code</b> (o terminal interativo do
+          <code class="inline">claude</code>) — não no terminal comum do sistema:</p>
+        <pre><span class="c"># dentro do Claude Code (não no terminal do sistema)</span>
 /plugin marketplace add <span class="s">duviolin/sdd-kit</span>
 /plugin install <span class="s">sdd-kit@sdd-kit</span></pre>
-        <p>As skills ficam disponíveis como <code class="inline">/sdd-kit:sdd-requirements</code>
-          (e disparam também por linguagem natural); a trava <code class="inline">sdd-lock</code> é
-          ativada pelo próprio plugin. Update e uninstall são gerenciados pelo
-          <code class="inline">/plugin</code>.</p>
-        <p>Para <b>testar localmente</b> sem instalar, a partir do clone do repo:</p>
+        <p>Depois, <b>abra uma sessão nova</b>. As skills ficam disponíveis como
+          <code class="inline">/sdd-kit:sdd-requirements</code> (e disparam também por linguagem
+          natural). O <code class="inline">/plugin</code> sozinho só abre o gerenciador (para
+          ativar/atualizar/remover) — quem instala é o <code class="inline">/plugin install</code> acima.</p>
+        <div class="callout"><b>Pré-requisitos.</b> (1) Ter o <b>Claude Code</b> instalado e numa
+          versão recente (com suporte a plugins); (2) rodar os comandos <b>dentro</b> dele;
+          (3) <b>Python 3</b> na máquina — só para a trava <code class="inline">sdd-lock</code>
+          funcionar (sem ele, as skills rodam normalmente; só a trava fica inativa).</div>
+        <p>Para <b>testar localmente</b> sem instalar, a partir do clone do repo (no terminal do sistema):</p>
         <pre><span class="k">claude</span> --plugin-dir <span class="s">.</span>
-<span class="c"># validar o pacote antes de publicar:</span>
+<span class="c"># validar o pacote:</span>
 <span class="k">claude</span> plugin validate <span class="s">.</span></pre>
-        <div class="callout"><b>Abra uma sessão nova.</b> O plugin é carregado no boot da sessão —
-          as skills só aparecem numa sessão iniciada depois da instalação.</div>
       </section>
 
       <section id="preparar">

@@ -7,16 +7,23 @@ Documentação visual: **[docs/index.html](docs/index.html)** (abra no navegador
 
 ## Instalar (plugin do Claude Code)
 
-Este pacote é um **plugin + marketplace** do Claude Code. De dentro do Claude Code:
+Este pacote é um **plugin + marketplace** do Claude Code. Cole os **dois comandos** abaixo
+**dentro de uma sessão do Claude Code** (o terminal interativo do `claude`) — não no terminal
+comum do sistema:
 
 ```
 /plugin marketplace add duviolin/sdd-kit
 /plugin install sdd-kit@sdd-kit
 ```
 
-Abra uma sessão nova. As skills ficam disponíveis como `/sdd-kit:sdd-requirements` (e disparam
-também por linguagem natural); a trava (hook `sdd-lock`) é ativada pelo próprio plugin — sem mexer
-em `~/.claude` na mão.
+Depois **abra uma sessão nova**. As skills ficam disponíveis como `/sdd-kit:sdd-requirements`
+(e disparam por linguagem natural); a trava (hook `sdd-lock`) é ativada pelo próprio plugin — sem
+mexer em `~/.claude` na mão. O `/plugin` sozinho só abre o gerenciador; quem instala é o
+`/plugin install` acima.
+
+**Pré-requisitos:** Claude Code numa versão recente (com suporte a plugins) · rodar os comandos
+dentro dele · **Python 3** na máquina só para a trava `sdd-lock` (sem ele, as skills funcionam;
+só a trava fica inativa).
 
 **Testar localmente** (sem instalar), a partir do clone:
 
