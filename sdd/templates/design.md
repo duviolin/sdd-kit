@@ -9,7 +9,7 @@
 ## Estratégia técnica
 
 <Como resolver. A abordagem escolhida e por quê (1 recomendação, não um catálogo).>
-<Respeita a `CONSTITUTION.md`? Aponte quais princípios (P1, P2...) guiam a escolha.>
+<Respeita a `constitution.md`? Aponte quais princípios (P1, P2...) guiam a escolha.>
 
 ## Impacto no código
 

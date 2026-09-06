@@ -51,7 +51,7 @@ sdd-kit/
 sdd-constitution → sdd-discovery → sdd-requirements → [APROVAÇÃO HUMANA] → sdd-design → sdd-backlog → sdd-analyze → sdd-delivery → sdd-acceptance
 ```
 
-`sdd-state` é transversal: mantém `STATE.md` (o que está rodando, onde paramos) e `.sdd/lock`
+`sdd-state` é transversal: mantém `state.md` (o que está rodando, onde paramos) e `.sdd/lock`
 (uma feature ativa por vez). O hook `sdd-lock` reforça a trava bloqueando escrita fora da branch dona.
 
 Cada feature gera uma trilha versionada em `specs/<NNN>-<slug>/` no projeto-alvo.

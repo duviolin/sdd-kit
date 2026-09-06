@@ -13,7 +13,7 @@ Executa as tasks de `specs/<NNN>-<slug>/tasks.md` a partir dos artefatos reais d
 
 ## Pré-condição
 
-- Existir `tasks.md` com tasks. Ler `CONSTITUTION.md`, `requirements.md`, `design.md` e `tasks.md`.
+- Existir `tasks.md` com tasks. Ler `constitution.md`, `requirements.md`, `design.md` e `tasks.md`.
 - `sdd-analyze` já passou (consistência ok). Se não passou, rodar antes.
 - Estar na branch de trabalho definida no design (`feat|fix|chore/<slug>`); criar/confirmar antes de codar.
 
@@ -24,7 +24,7 @@ Executa as tasks de `specs/<NNN>-<slug>/tasks.md` a partir dos artefatos reais d
    `test-strategy`: **red-first** — escreva o teste que falha (caso feliz **e** os "casos de borda/erro"
    da task) e mostre o vermelho; depois o código mínimo pro verde; depois refactor. Seguir `solid`,
    `defensive-programming`, `dry`, `kiss`, `yagni`, `clean-code`, `error-handling`, `rich-domain`,
-   `secure-by-default` conforme o design indicou, sempre dentro dos princípios da `CONSTITUTION.md`.
+   `secure-by-default` conforme o design indicou, sempre dentro dos princípios da `constitution.md`.
 3. Rodar a verificação (testes/comando da "evidência esperada"), incluindo os casos de borda/erro.
 4. Só marcar `done` com **evidência objetiva** — colar o comando + resultado em "Evidência obtida"
    (o vermelho inicial e o verde final). Sem evidência, a task fica `in_progress` ou `blocked`
@@ -40,4 +40,4 @@ Executa as tasks de `specs/<NNN>-<slug>/tasks.md` a partir dos artefatos reais d
 
 ## Estado (lock)
 
-- Respeitar o protocolo do `sdd-state`: ler `STATE.md` antes de agir; se **outra** feature estiver `in_progress`, parar e avisar. Ao iniciar/fechar esta etapa, atualizar o bloco LOCK e o histórico.
+- Respeitar o protocolo do `sdd-state`: ler `state.md` antes de agir; se **outra** feature estiver `in_progress`, parar e avisar. Ao iniciar/fechar esta etapa, atualizar o bloco LOCK e o histórico.

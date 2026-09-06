@@ -6,7 +6,7 @@ branch atual, bloqueia Edit/Write/MultiEdit/NotebookEdit — evitando que outra 
 sobrescreva o trabalho em andamento. É no-op em qualquer projeto sem `.sdd/lock`.
 
 Protocolo: lê o JSON do PreToolUse no stdin. exit 0 = permite; exit 2 = bloqueia (stderr volta
-para o modelo). Edições a `STATE.md` e a `.sdd/` seguem sempre liberadas (para gestão/override).
+para o modelo). Edições a `state.md` e a `.sdd/` seguem sempre liberadas (para gestão/override).
 """
 import sys, os, json, time, subprocess
 
@@ -40,7 +40,7 @@ def main():
     # Nunca bloquear a gestão do próprio estado/lock.
     tin = data.get("tool_input") or {}
     fp = tin.get("file_path") or tin.get("notebook_path") or ""
-    if os.path.basename(fp) == "STATE.md" or (os.sep + ".sdd" + os.sep) in fp \
+    if os.path.basename(fp) == "state.md" or (os.sep + ".sdd" + os.sep) in fp \
             or fp.endswith(os.sep + ".sdd"):
         allow()
 
@@ -52,7 +52,7 @@ def main():
     ts = lock.get("ts", 0)
     if ts and (time.time() - ts) > TTL_SECONDS:
         print("[sdd-lock] lock expirado (> 8h) de "
-              f"{lock.get('feature')} / {lock.get('branch')} — permitindo; revise o STATE.md.",
+              f"{lock.get('feature')} / {lock.get('branch')} — permitindo; revise o state.md.",
               file=sys.stderr)
         allow()
 
@@ -70,7 +70,7 @@ def main():
     deny(f"trava ativa: feature '{lock.get('feature')}' na branch '{locked_branch}' "
          f"(dono {lock.get('owner')}). Você está em '{cur or 'sem git'}'. "
          f"Use sdd-state (release) ou troque para a branch da feature. "
-         f"Edições a STATE.md/.sdd continuam liberadas.")
+         f"Edições a state.md/.sdd continuam liberadas.")
 
 
 if __name__ == "__main__":

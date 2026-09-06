@@ -14,7 +14,7 @@ Transforma demanda (história, descrição, ticket, bug, código) em `specs/<NNN
 
 ## Passos
 
-1. Ler `CONSTITUTION.md` (princípios que a feature herda) e `ARCHITECTURE.md` se existirem. Se o
+1. Ler `constitution.md` (princípios que a feature herda) e `architecture.md` se existirem. Se o
    repo for novo/desconhecido e isso ajudar, sugerir `sdd-constitution` e/ou `sdd-discovery` antes.
 2. Definir `<slug>` (kebab curto do título) e `<NNN>`: varrer `specs/`, pegar o maior número
    existente + 1, com 3 dígitos (`001`, `002`…). Criar a pasta `specs/<NNN>-<slug>/`.
@@ -24,7 +24,7 @@ Transforma demanda (história, descrição, ticket, bug, código) em `specs/<NNN
 4. **Clarify:** varrer o documento por ambiguidade e fazer as perguntas de decisão humana que
    faltarem — não preencher dúvida crítica com achismo. Repetir até não restar ambiguidade bloqueante.
 5. Rodar o **checklist de qualidade** do rodapé do template (EARS sem ambiguidade, todo CA
-   verificável, escopo-fora preenchido, nada contra a `CONSTITUTION.md`, zero detalhe de implementação).
+   verificável, escopo-fora preenchido, nada contra a `constitution.md`, zero detalhe de implementação).
 6. Gravar `requirements.md` com `Status: awaiting_approval`.
 
 ## Gate (obrigatório)
@@ -41,4 +41,4 @@ Transforma demanda (história, descrição, ticket, bug, código) em `specs/<NNN
 
 ## Estado (lock)
 
-- Respeitar o protocolo do `sdd-state`: ler `STATE.md` antes de agir; se **outra** feature estiver `in_progress`, parar e avisar. Ao iniciar/fechar esta etapa, atualizar o bloco LOCK e o histórico.
+- Respeitar o protocolo do `sdd-state`: ler `state.md` antes de agir; se **outra** feature estiver `in_progress`, parar e avisar. Ao iniciar/fechar esta etapa, atualizar o bloco LOCK e o histórico.

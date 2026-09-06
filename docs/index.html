@@ -484,8 +484,8 @@
         <div class="flow" style="display:block; padding:24px 22px">
           <div style="font-family:var(--f-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:10px">Nível projeto · 1x (opcional)</div>
           <div style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:22px">
-            <span style="display:flex; flex-direction:column; gap:2px; border:1px solid var(--line); background:var(--surface-2); color:var(--ink); border-radius:10px; padding:8px 12px; font-family:var(--f-mono); font-size:12.5px; font-weight:600">sdd-constitution<small style="font-weight:400; font-size:10.5px; color:var(--muted)">CONSTITUTION.md</small></span>
-            <span style="display:flex; flex-direction:column; gap:2px; border:1px solid var(--line); background:var(--surface-2); color:var(--ink); border-radius:10px; padding:8px 12px; font-family:var(--f-mono); font-size:12.5px; font-weight:600">sdd-discovery<small style="font-weight:400; font-size:10.5px; color:var(--muted)">ARCHITECTURE.md</small></span>
+            <span style="display:flex; flex-direction:column; gap:2px; border:1px solid var(--line); background:var(--surface-2); color:var(--ink); border-radius:10px; padding:8px 12px; font-family:var(--f-mono); font-size:12.5px; font-weight:600">sdd-constitution<small style="font-weight:400; font-size:10.5px; color:var(--muted)">constitution.md</small></span>
+            <span style="display:flex; flex-direction:column; gap:2px; border:1px solid var(--line); background:var(--surface-2); color:var(--ink); border-radius:10px; padding:8px 12px; font-family:var(--f-mono); font-size:12.5px; font-weight:600">sdd-discovery<small style="font-weight:400; font-size:10.5px; color:var(--muted)">architecture.md</small></span>
           </div>
           <div style="font-family:var(--f-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:10px">Por feature</div>
           <div style="display:flex; flex-wrap:wrap; align-items:stretch; gap:6px">
@@ -523,7 +523,7 @@
             <div class="role">princípios · opcional · 1x</div>
             <p>Define os princípios inegociáveis do projeto — padrões de código/teste, política de
               erro e segurança, camadas proibidas, processo. É prescritivo e governa todas as fases.</p>
-            <div class="out">→ <b>CONSTITUTION.md</b> na raiz (1 por projeto, versionado)</div>
+            <div class="out">→ <b>constitution.md</b> na raiz (1 por projeto, versionado)</div>
           </div>
 
           <div class="card">
@@ -531,7 +531,7 @@
             <div class="role">baseline · opcional</div>
             <p>Explora o projeto real (pastas, deps, integrações, camadas) e cria/atualiza um
               retrato técnico atual — não aspiracional. É descritivo, complementa a constitution.</p>
-            <div class="out">→ <b>ARCHITECTURE.md</b> na raiz (1 por projeto, documento vivo)</div>
+            <div class="out">→ <b>architecture.md</b> na raiz (1 por projeto, documento vivo)</div>
           </div>
 
           <div class="card">
@@ -596,11 +596,11 @@
           <div class="card">
             <div class="head"><span class="num">✳</span><code class="name">sdd-state</code></div>
             <div class="role">transversal · trava &amp; retomada</div>
-            <p>Mantém o <code class="inline">STATE.md</code> (o que está rodando, onde paramos) e o
+            <p>Mantém o <code class="inline">state.md</code> (o que está rodando, onde paramos) e o
               <code class="inline">.sdd/lock</code>: uma feature ativa por vez. O hook
               <code class="inline">sdd-lock</code> bloqueia escrita fora da branch dona — duas janelas
               não se sobrescrevem.</p>
-            <div class="out">→ <b>STATE.md</b> + <b>.sdd/lock</b> · lock advisory reforçada</div>
+            <div class="out">→ <b>state.md</b> + <b>.sdd/lock</b> · lock advisory reforçada</div>
           </div>
         </div>
       </section>
@@ -611,12 +611,12 @@
         <p>Cada feature vive numa pasta numerada dentro de <code class="inline">specs/</code> do
           projeto-alvo. O número <code class="inline">&lt;NNN&gt;</code> é o próximo livre; o
           <code class="inline">&lt;slug&gt;</code> é o título em kebab-case. A
-          <code class="inline">CONSTITUTION.md</code> e o <code class="inline">ARCHITECTURE.md</code>
+          <code class="inline">constitution.md</code> e o <code class="inline">architecture.md</code>
           ficam na raiz, únicos por projeto.</p>
         <div class="tree">&lt;projeto&gt;/
-├── <b>CONSTITUTION.md</b>            <span style="color:var(--muted)"># princípios inegociáveis (sdd-constitution)</span>
-├── <b>ARCHITECTURE.md</b>            <span style="color:var(--muted)"># visão técnica real (sdd-discovery)</span>
-├── <b>STATE.md</b>                   <span style="color:var(--muted)"># o que roda + histórico (sdd-state)</span>
+├── <b>constitution.md</b>            <span style="color:var(--muted)"># princípios inegociáveis (sdd-constitution)</span>
+├── <b>architecture.md</b>            <span style="color:var(--muted)"># visão técnica real (sdd-discovery)</span>
+├── <b>state.md</b>                   <span style="color:var(--muted)"># o que roda + histórico (sdd-state)</span>
 ├── <b>.sdd/lock</b>                  <span style="color:var(--muted)"># trava, reforçada pelo hook sdd-lock</span>
 └── <b>specs/</b>
     └── <span class="a">001-exportar-relatorio/</span>
@@ -635,9 +635,9 @@
         <p>Esqueletos que as skills copiam e preenchem, garantindo que toda feature siga a mesma
           estrutura. São sete:</p>
         <div class="pills">
-          <div class="pill"><code>CONSTITUTION.md</code><span>princípios inegociáveis, piso de QA, restrições</span></div>
-          <div class="pill"><code>ARCHITECTURE.md</code><span>componentes, integrações, decisões, restrições</span></div>
-          <div class="pill"><code>STATE.md</code><span>o que roda, etapa, branch, dono + histórico</span></div>
+          <div class="pill"><code>constitution.md</code><span>princípios inegociáveis, piso de QA, restrições</span></div>
+          <div class="pill"><code>architecture.md</code><span>componentes, integrações, decisões, restrições</span></div>
+          <div class="pill"><code>state.md</code><span>o que roda, etapa, branch, dono + histórico</span></div>
           <div class="pill"><code>requirements.md</code><span>problema, escopo, requisitos EARS, critérios</span></div>
           <div class="pill"><code>design.md</code><span>estratégia, impacto, riscos, validação planejada</span></div>
           <div class="pill"><code>tasks.md</code><span>tasks com origem, evidência esperada e status</span></div>
@@ -694,7 +694,7 @@
           repositório, propõe, <b>pergunta o que só você sabe</b>, e você decide. Some o
           documento em branco assustador.</p>
 
-        <h4>CONSTITUTION.md — os princípios (prescritivo)</h4>
+        <h4>constitution.md — os princípios (prescritivo)</h4>
         <p>Diz o que <b>sempre/nunca</b> vale no projeto. Como a IA não pode adivinhar as suas
           regras, aqui ela <b>puxa por perguntas</b>.</p>
         <ol class="steps">
@@ -708,7 +708,7 @@ Quais camadas/dependências são PROIBIDAS? (ex.: UI não chama repositório dir
 Política de erro e de segredo? Padrão de branch e de review?
 O que BLOQUEIA um merge?</pre></li>
           <li>Você responde (ou diz "usa um padrão sensato e eu ajusto"). A IA grava a
-            <code class="inline">CONSTITUTION.md</code> com <b>princípios verificáveis</b> — dá pra
+            <code class="inline">constitution.md</code> com <b>princípios verificáveis</b> — dá pra
             dizer objetivamente se foram violados — e versiona.</li>
           <li>Revise. Mudou algo? Rode a skill de novo: ela <b>atualiza com bump de versão</b>, não recria.</li>
         </ol>
@@ -716,7 +716,7 @@ O que BLOQUEIA um merge?</pre></li>
           a constituição vem mais das <b>suas respostas</b>. Num repo existente, ela infere muito do
           que já está lá e você só confirma/ajusta.</div>
 
-        <h4>ARCHITECTURE.md — o retrato técnico (descritivo)</h4>
+        <h4>architecture.md — o retrato técnico (descritivo)</h4>
         <p>Diz o que o sistema <b>é hoje</b> (não o ideal). Aqui a IA faz o trabalho pesado:
           <b>ela explora e escreve o rascunho</b>, você valida.</p>
         <ol class="steps">
@@ -725,13 +725,13 @@ O que BLOQUEIA um merge?</pre></li>
           <li>A IA <b>varre o código</b> — pastas, manifestos de dependência, entrypoints,
             integrações, camadas — e monta o retrato <b>com base em evidência</b>, marcando o que é
             gap em vez de inventar.</li>
-          <li>Ela grava a <code class="inline">ARCHITECTURE.md</code>: visão geral, componentes,
+          <li>Ela grava a <code class="inline">architecture.md</code>: visão geral, componentes,
             integrações, dependências, fluxos-chave, decisões e restrições.</li>
           <li>Você <b>revisa e corrige</b> o que a leitura do código não captou (o "porquê" de
             decisões, restrições de negócio). Evoluiu o sistema? Rode de novo pra atualizar.</li>
         </ol>
-        <div class="callout"><b>Por que os dois?</b> A <code class="inline">CONSTITUTION.md</code> é a
-          <b>lei</b> (o que você promete seguir); a <code class="inline">ARCHITECTURE.md</code> é o
+        <div class="callout"><b>Por que os dois?</b> A <code class="inline">constitution.md</code> é a
+          <b>lei</b> (o que você promete seguir); a <code class="inline">architecture.md</code> é o
           <b>mapa</b> (como o sistema está). Juntos, dão à IA o contexto pra escrever specs e planos
           que respeitam o seu projeto — em vez de sugestões genéricas.</div>
       </section>
@@ -757,9 +757,9 @@ O que BLOQUEIA um merge?</pre></li>
         </ol>
         <p style="margin-top:4px"><b>Trava &amp; retomada:</b> ao começar, o
           <code class="inline">/sdd-kit:sdd-state</code> registra a feature ativa no
-          <code class="inline">STATE.md</code> e crava o <code class="inline">.sdd/lock</code>. O hook
+          <code class="inline">state.md</code> e crava o <code class="inline">.sdd/lock</code>. O hook
           <code class="inline">sdd-lock</code> impede outra janela de escrever fora da branch dona;
-          quando voltar, <i>"onde paramos?"</i> lê o <code class="inline">STATE.md</code> e retoma no ponto.</p>
+          quando voltar, <i>"onde paramos?"</i> lê o <code class="inline">state.md</code> e retoma no ponto.</p>
         <p>As skills também disparam sozinhas por linguagem natural — dizer <i>"quero uma feature
           de X"</i> tende a acionar a <code class="inline">sdd-requirements</code>; <i>"implementa"</i> ou
           <i>"segue"</i> aciona a <code class="inline">sdd-delivery</code>. Invocar por
@@ -777,7 +777,7 @@ O que BLOQUEIA um merge?</pre></li>
 
         <ol class="steps">
           <li><b>A <code class="inline">sdd-requirements</code> dispara</b> (o "preciso de…" já aciona).
-            Ela lê a <code class="inline">CONSTITUTION.md</code> e a <code class="inline">ARCHITECTURE.md</code>,
+            Ela lê a <code class="inline">constitution.md</code> e a <code class="inline">architecture.md</code>,
             descobre onde vive o perfil e como telefones são validados hoje.</li>
           <li><b>Clarify — ela te devolve perguntas antes de escrever nada:</b> é opcional? tem tipo
             (celular/fixo)? qual principal? valida DDD/país? aceita duplicado? impacta SMS/notificação?

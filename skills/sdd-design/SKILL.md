@@ -18,11 +18,11 @@ Converte um `requirements.md` **aprovado** em `specs/<NNN>-<slug>/design.md`.
 
 ## Passos
 
-1. Ler `requirements.md`, a `CONSTITUTION.md` e o `ARCHITECTURE.md` do projeto.
+1. Ler `requirements.md`, a `constitution.md` e o `architecture.md` do projeto.
 2. Preencher a partir de `${CLAUDE_PLUGIN_ROOT}/sdd/templates/design.md`: estratégia técnica (1 recomendação,
    não catálogo), impacto por arquivo, dependências, riscos+mitigação, ordem de execução,
    validação planejada (como cada CA será provado), e a **branch** de trabalho (`feat|fix|chore/<slug>`).
-3. Garantir que a estratégia **respeita a `CONSTITUTION.md`** — citar quais princípios guiam a escolha.
+3. Garantir que a estratégia **respeita a `constitution.md`** — citar quais princípios guiam a escolha.
 4. Preencher a **Estratégia de testes** (nível + casos de borda/erro por CA) — ver `test-strategy`.
 5. Citar as guidelines relevantes de `${CLAUDE_PLUGIN_ROOT}/sdd/guidelines/` e **onde** importam
    (`tdd`, `test-strategy`, `solid`, `defensive-programming`, `rich-domain`, `dry`, `kiss`, `yagni`,
@@ -37,4 +37,4 @@ Converte um `requirements.md` **aprovado** em `specs/<NNN>-<slug>/design.md`.
 
 ## Estado (lock)
 
-- Respeitar o protocolo do `sdd-state`: ler `STATE.md` antes de agir; se **outra** feature estiver `in_progress`, parar e avisar. Ao iniciar/fechar esta etapa, atualizar o bloco LOCK e o histórico.
+- Respeitar o protocolo do `sdd-state`: ler `state.md` antes de agir; se **outra** feature estiver `in_progress`, parar e avisar. Ao iniciar/fechar esta etapa, atualizar o bloco LOCK e o histórico.

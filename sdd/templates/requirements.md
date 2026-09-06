@@ -60,7 +60,7 @@ Escreva cada requisito num dos padrões EARS — remove ambiguidade e vira teste
 - [ ] Cada requisito tem ao menos um critério de aceite mapeado.
 - [ ] Escopo "fora" preenchido explicitamente (anti scope-creep).
 - [ ] Sem detalhe de implementação (o "como" é do design, não daqui).
-- [ ] Nada contraria a `CONSTITUTION.md` do projeto.
+- [ ] Nada contraria a `constitution.md` do projeto.
 - [ ] Dúvidas críticas viraram pergunta em aberto, não achismo.
 
 ---

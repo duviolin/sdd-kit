@@ -14,23 +14,23 @@ sdd-discovery           (opcional, 1x por projeto / quando muda de forma relevan
 sdd-requirements ─► [APROVAÇÃO HUMANA] ─► sdd-design ─► sdd-backlog ─► sdd-analyze ─► sdd-delivery ─► sdd-acceptance
 ```
 
-- **sdd-constitution** → `CONSTITUTION.md` (princípios inegociáveis, nível projeto).
-- **sdd-discovery** → `ARCHITECTURE.md` (nível projeto, evolutivo).
+- **sdd-constitution** → `constitution.md` (princípios inegociáveis, nível projeto).
+- **sdd-discovery** → `architecture.md` (nível projeto, evolutivo).
 - **sdd-requirements** → `specs/<NNN>-<slug>/requirements.md` (EARS). **Para e pede aprovação. Não avança sozinha.**
 - **sdd-design** → `specs/<NNN>-<slug>/design.md` (só depois dos requisitos aprovados).
 - **sdd-backlog** → `specs/<NNN>-<slug>/tasks.md`.
 - **sdd-analyze** → gate de consistência (requirements ↔ design ↔ tasks). Não escreve artefato; bloqueia se algo não bater.
 - **sdd-delivery** → executa **uma task por vez**, só fecha com **evidência objetiva** (red-first).
 - **sdd-acceptance** → valida a entrega contra o diff da branch → `specs/<NNN>-<slug>/acceptance.md`.
-- **sdd-state** (transversal) → mantém `STATE.md` + `.sdd/lock`: uma feature ativa por vez, retomada segura.
+- **sdd-state** (transversal) → mantém `state.md` + `.sdd/lock`: uma feature ativa por vez, retomada segura.
 
 ## Convenção de artefatos (no projeto-alvo)
 
 ```
 <projeto>/
-├── CONSTITUTION.md                 # princípios inegociáveis (único por projeto)
-├── ARCHITECTURE.md                 # visão técnica real (único por projeto)
-├── STATE.md                        # o que está rodando + histórico (sdd-state)
+├── constitution.md                 # princípios inegociáveis (único por projeto)
+├── architecture.md                 # visão técnica real (único por projeto)
+├── state.md                        # o que está rodando + histórico (sdd-state)
 ├── .sdd/lock                       # trava (feature/branch/dono/ts) — reforçada pelo hook
 └── specs/
     └── <NNN>-<slug>/
@@ -50,15 +50,15 @@ sdd-requirements ─► [APROVAÇÃO HUMANA] ─► sdd-design ─► sdd-backlo
   `sdd-requirements` **nunca** gera o design no mesmo turno.
 - **backlog → delivery**: `sdd-analyze` precisa dar **consistente** antes de codar.
 - **última task → acceptance**: `sdd-acceptance` só emite `acceptance.md: aprovado` com evidência —
-  cobertura conferida contra o piso da `CONSTITUTION.md`, todo CA e caminho de erro provado.
+  cobertura conferida contra o piso da `constitution.md`, todo CA e caminho de erro provado.
 
-## Trava de execução (STATE.md + hook)
+## Trava de execução (state.md + hook)
 
-- `STATE.md` (raiz) é a fonte única de "o que está rodando / onde paramos"; `.sdd/lock` guarda a
+- `state.md` (raiz) é a fonte única de "o que está rodando / onde paramos"; `.sdd/lock` guarda a
   trava (feature, branch, dono, timestamp). Gerenciados por `sdd-state`.
 - O script `sdd/hooks/sdd-lock.py` (PreToolUse) **bloqueia Edit/Write** quando o lock pertence a
   outra branch — evita duas janelas se sobrescreverem. É **advisory reforçada**, não mutex de SO:
-  edições a `STATE.md`/`.sdd` seguem liberadas, e lock > 8h é tratado como expirado.
+  edições a `state.md`/`.sdd` seguem liberadas, e lock > 8h é tratado como expirado.
 - **Registro automático:** o plugin declara o hook em `hooks/hooks.json`; ele passa a valer assim
   que o plugin é instalado/ativado — sem editar `settings.json` na mão:
 

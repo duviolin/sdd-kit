@@ -18,7 +18,7 @@ antes de gastar execução em `sdd-delivery`. Não escreve código nem novos art
 
 ## Passos
 
-1. Ler `CONSTITUTION.md` (se houver), `requirements.md`, `design.md` e `tasks.md`.
+1. Ler `constitution.md` (se houver), `requirements.md`, `design.md` e `tasks.md`.
 2. Checar cobertura e coerência:
    - **Requisito → design:** todo requisito tem tratamento no design?
    - **CA → task:** todo critério de aceite tem ao menos uma task que o prova? Nada órfão.
@@ -36,4 +36,4 @@ antes de gastar execução em `sdd-delivery`. Não escreve código nem novos art
 
 ## Estado (lock)
 
-- Respeitar o protocolo do `sdd-state`: ler `STATE.md` antes de agir; se **outra** feature estiver `in_progress`, parar e avisar. Ao iniciar/fechar esta etapa, atualizar o bloco LOCK e o histórico.
+- Respeitar o protocolo do `sdd-state`: ler `state.md` antes de agir; se **outra** feature estiver `in_progress`, parar e avisar. Ao iniciar/fechar esta etapa, atualizar o bloco LOCK e o histórico.
