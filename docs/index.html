@@ -194,6 +194,7 @@
       <p class="lbl">Nesta página</p>
       <a href="#overview">O que é</a>
       <a href="#sobre">Sobre o SDD</a>
+      <a href="#era">A nova era (com IA)</a>
       <a href="#flow">O fluxo</a>
       <a href="#skills">As 9 skills</a>
       <a href="#artifacts">Artefatos & auditoria</a>
@@ -339,6 +340,142 @@
           <li><b>Disciplina de evidência</b> — nenhuma task fecha sem prova objetiva colada.</li>
           <li><b>EARS + Gherkin</b>: requisito sem ambiguidade e critério verificável, juntos.</li>
         </ul>
+      </section>
+
+      <section id="era">
+        <h3 class="sec">A nova era: codar com IA</h3>
+        <p class="sec-note">a virada · o novo papel do engenheiro</p>
+        <p>Por décadas, programar foi essencialmente <b>digitar</b>: a habilidade escassa era traduzir
+          uma ideia em código, linha por linha. A IA virou isso de cabeça pra baixo. Escrever código
+          ficou <b>rápido e barato</b>. O que continua difícil — e agora vale ouro — é dizer com
+          precisão <b>o quê</b> construir e <b>por quê</b>. É aí que entra o Spec-Driven Development.</p>
+
+        <h4>1 · A inversão</h4>
+        <p>No modelo antigo, o <b>código</b> era a fonte da verdade e a documentação corria atrás
+          (quando existia). No SDD, a <b>spec</b> é a fonte da verdade e o código é derivado dela —
+          reconstruível a qualquer momento.</p>
+        <figure style="margin:18px 0 0; border:1px solid var(--line); border-radius:var(--radius); background:var(--surface); box-shadow:var(--shadow); overflow-x:auto">
+          <svg viewBox="0 0 720 232" style="width:100%; height:auto; display:block; min-width:540px" font-family="var(--f-body)" role="img" aria-label="Antes: código como fonte da verdade e docs atrasadas. Agora: spec como fonte da verdade e código derivado.">
+            <defs><marker id="arwA" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"/></marker>
+            <marker id="arwAg" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"/></marker></defs>
+            <text x="24" y="30" font-family="var(--f-mono)" font-size="12" font-weight="600" fill="var(--muted)">ANTES</text>
+            <rect x="40" y="44" width="272" height="60" rx="12" fill="var(--surface-2)" stroke="var(--line)"/>
+            <text x="176" y="72" text-anchor="middle" font-size="17" font-weight="700" fill="var(--ink)">CÓDIGO</text>
+            <text x="176" y="91" text-anchor="middle" font-size="11" fill="var(--muted)">fonte da verdade</text>
+            <line x1="176" y1="104" x2="176" y2="146" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="4 4" marker-end="url(#arwA)"/>
+            <rect x="70" y="148" width="212" height="46" rx="10" fill="var(--surface)" stroke="var(--line)" stroke-dasharray="5 4"/>
+            <text x="176" y="169" text-anchor="middle" font-size="13" fill="var(--muted)">documentação</text>
+            <text x="176" y="185" text-anchor="middle" font-size="10.5" fill="var(--muted)">⌛ sempre atrasada</text>
+            <line x1="360" y1="34" x2="360" y2="206" stroke="var(--line)" stroke-width="1"/>
+            <text x="384" y="30" font-family="var(--f-mono)" font-size="12" font-weight="600" fill="var(--accent-ink)">AGORA · SDD</text>
+            <rect x="400" y="44" width="272" height="60" rx="12" fill="var(--accent-soft)" stroke="var(--accent)"/>
+            <text x="536" y="72" text-anchor="middle" font-size="17" font-weight="700" fill="var(--accent-ink)">SPEC</text>
+            <text x="536" y="91" text-anchor="middle" font-size="11" fill="var(--accent-ink)">fonte da verdade</text>
+            <line x1="536" y1="104" x2="536" y2="146" stroke="var(--accent)" stroke-width="1.8" marker-end="url(#arwAg)"/>
+            <rect x="430" y="148" width="212" height="46" rx="10" fill="var(--surface)" stroke="var(--line)"/>
+            <text x="536" y="169" text-anchor="middle" font-size="13" fill="var(--ink)">código</text>
+            <text x="536" y="185" text-anchor="middle" font-size="10.5" fill="var(--muted)">derivado · provado por testes</text>
+          </svg>
+          <figcaption style="font-family:var(--f-mono); font-size:11.5px; color:var(--muted); padding:2px 16px 14px">A intenção vira o artefato durável; o código, o subproduto regenerável.</figcaption>
+        </figure>
+
+        <h4>2 · O gargalo mudou de lugar</h4>
+        <p>Antes, o esforço humano ia quase todo em <b>escrever código</b>. Com a IA digitando, o
+          esforço se desloca pra <b>especificar a intenção</b> sem ambiguidade — é lá que mora o valor
+          e o risco agora.</p>
+        <figure style="margin:18px 0 0; border:1px solid var(--line); border-radius:var(--radius); background:var(--surface); box-shadow:var(--shadow); overflow-x:auto">
+          <svg viewBox="0 0 720 210" style="width:100%; height:auto; display:block; min-width:540px" font-family="var(--f-body)" role="img" aria-label="Barras: antes o esforço era escrever código; agora é especificar intenção.">
+            <text x="40" y="46" font-family="var(--f-mono)" font-size="12" font-weight="600" fill="var(--muted)">ANTES — onde ia o esforço humano</text>
+            <rect x="40" y="56" width="448" height="40" rx="8" fill="var(--surface-2)" stroke="var(--line)"/>
+            <text x="264" y="81" text-anchor="middle" font-size="12.5" fill="var(--ink)">escrever código</text>
+            <rect x="492" y="56" width="188" height="40" rx="8" fill="var(--accent-soft)" stroke="var(--accent)"/>
+            <text x="586" y="81" text-anchor="middle" font-size="11.5" fill="var(--accent-ink)">especificar</text>
+            <text x="40" y="140" font-family="var(--f-mono)" font-size="12" font-weight="600" fill="var(--accent-ink)">AGORA (com IA) — onde vai o esforço humano</text>
+            <rect x="40" y="150" width="470" height="40" rx="8" fill="var(--accent-soft)" stroke="var(--accent)"/>
+            <text x="275" y="175" text-anchor="middle" font-size="12.5" font-weight="600" fill="var(--accent-ink)">especificar intenção</text>
+            <rect x="514" y="150" width="166" height="40" rx="8" fill="var(--surface-2)" stroke="var(--line)"/>
+            <text x="597" y="175" text-anchor="middle" font-size="11" fill="var(--muted)">código (a IA digita)</text>
+          </svg>
+          <figcaption style="font-family:var(--f-mono); font-size:11.5px; color:var(--muted); padding:2px 16px 14px">Digitar ficou barato. Pensar e especificar ficou o trabalho de verdade.</figcaption>
+        </figure>
+
+        <h4>3 · O novo papel do engenheiro</h4>
+        <p>Você deixa de ser quem <b>digita</b> e passa a ser quem <b>dirige</b>. A IA escreve o
+          código; você é dono da <b>intenção</b>, das <b>decisões</b>, da <b>revisão</b> e da
+          <b>garantia</b> — e responde pelo resultado. Menos pedreiro, mais arquiteto/diretor.</p>
+        <figure style="margin:18px 0 0; border:1px solid var(--line); border-radius:var(--radius); background:var(--surface); box-shadow:var(--shadow); overflow-x:auto">
+          <svg viewBox="0 0 720 300" style="width:100%; height:auto; display:block; min-width:540px" font-family="var(--f-body)" role="img" aria-label="Você no centro dirigindo; quatro responsabilidades: intenção, revisão, decisão, garantia.">
+            <g stroke="var(--line)" stroke-width="1.5">
+              <line x1="360" y1="150" x2="190" y2="70"/><line x1="360" y1="150" x2="530" y2="70"/>
+              <line x1="360" y1="150" x2="190" y2="234"/><line x1="360" y1="150" x2="530" y2="234"/>
+            </g>
+            <circle cx="360" cy="150" r="58" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5"/>
+            <text x="360" y="146" text-anchor="middle" font-size="18" font-weight="800" fill="var(--accent-ink)">VOCÊ</text>
+            <text x="360" y="166" text-anchor="middle" font-size="11" fill="var(--accent-ink)">direção</text>
+            <g font-size="13" font-weight="600">
+              <rect x="60" y="44" width="200" height="52" rx="10" fill="var(--surface)" stroke="var(--line)"/>
+              <text x="160" y="68" text-anchor="middle" fill="var(--ink)">Intenção</text>
+              <text x="160" y="85" text-anchor="middle" font-size="10.5" font-weight="400" fill="var(--muted)">o quê &amp; por quê</text>
+              <rect x="460" y="44" width="200" height="52" rx="10" fill="var(--surface)" stroke="var(--line)"/>
+              <text x="560" y="68" text-anchor="middle" fill="var(--ink)">Revisão</text>
+              <text x="560" y="85" text-anchor="middle" font-size="10.5" font-weight="400" fill="var(--muted)">aprova / rejeita</text>
+              <rect x="60" y="208" width="200" height="52" rx="10" fill="var(--surface)" stroke="var(--line)"/>
+              <text x="160" y="232" text-anchor="middle" fill="var(--ink)">Decisão</text>
+              <text x="160" y="249" text-anchor="middle" font-size="10.5" font-weight="400" fill="var(--muted)">trade-offs técnicos</text>
+              <rect x="460" y="208" width="200" height="52" rx="10" fill="var(--surface)" stroke="var(--line)"/>
+              <text x="560" y="232" text-anchor="middle" fill="var(--ink)">Garantia</text>
+              <text x="560" y="249" text-anchor="middle" font-size="10.5" font-weight="400" fill="var(--muted)">evidência &amp; QA</text>
+            </g>
+            <text x="360" y="286" text-anchor="middle" font-family="var(--f-mono)" font-size="11" fill="var(--muted)">a IA executa · você dirige e responde pelo resultado</text>
+          </svg>
+          <figcaption style="font-family:var(--f-mono); font-size:11.5px; color:var(--muted); padding:2px 16px 14px">O engenheiro sobe de nível: da sintaxe para a intenção, a decisão e a garantia.</figcaption>
+        </figure>
+
+        <h4>4 · Erre no barato</h4>
+        <p>Um erro custa quase nada quando ainda é uma frase na spec — e uma fortuna quando já está
+          em produção. O SDD empurra as decisões pra <b>esquerda da curva</b>: decide no texto, antes
+          de gastar execução. É o oposto do "vibe coding", que só descobre o problema lá na direita.</p>
+        <figure style="margin:18px 0 0; border:1px solid var(--line); border-radius:var(--radius); background:var(--surface); box-shadow:var(--shadow); overflow-x:auto">
+          <svg viewBox="0 0 720 260" style="width:100%; height:auto; display:block; min-width:540px" font-family="var(--f-body)" role="img" aria-label="Curva do custo de corrigir um erro, crescendo de spec até produção.">
+            <line x1="64" y1="214" x2="688" y2="214" stroke="var(--line)" stroke-width="1.5"/>
+            <line x1="64" y1="28" x2="64" y2="214" stroke="var(--line)" stroke-width="1.5"/>
+            <text x="30" y="120" text-anchor="middle" font-family="var(--f-mono)" font-size="10.5" fill="var(--muted)" transform="rotate(-90 30 120)">custo de corrigir →</text>
+            <path d="M84,202 C 300,196 396,168 470,132 S 610,54 664,44" fill="none" stroke="var(--gate)" stroke-width="2.5"/>
+            <g font-family="var(--f-mono)" font-size="11" fill="var(--muted)">
+              <text x="120" y="232" text-anchor="middle">Spec</text>
+              <text x="300" y="232" text-anchor="middle">Design</text>
+              <text x="470" y="232" text-anchor="middle">Código</text>
+              <text x="632" y="232" text-anchor="middle">Produção</text>
+            </g>
+            <circle cx="110" cy="200" r="7" fill="var(--accent)"/>
+            <rect x="120" y="168" width="196" height="26" rx="6" fill="var(--accent-soft)" stroke="var(--accent)"/>
+            <text x="218" y="185" text-anchor="middle" font-size="11" font-weight="600" fill="var(--accent-ink)">SDD decide aqui — barato</text>
+            <circle cx="648" cy="48" r="7" fill="var(--gate)"/>
+            <rect x="452" y="60" width="212" height="26" rx="6" fill="var(--gate-soft)" stroke="var(--gate)"/>
+            <text x="558" y="77" text-anchor="middle" font-size="11" font-weight="600" fill="var(--gate)">vibe coding descobre aqui — caro</text>
+          </svg>
+          <figcaption style="font-family:var(--f-mono); font-size:11.5px; color:var(--muted); padding:2px 16px 14px">O custo de um erro cresce a cada fase. Decidir cedo (na spec) é o barato; descobrir tarde (em produção) é o caro.</figcaption>
+        </figure>
+
+        <h4>Duas mentalidades</h4>
+        <div class="skills">
+          <div class="card">
+            <div class="head"><code class="name" style="background:var(--gate-soft);color:var(--gate)">vibe coding</code></div>
+            <p>"Constrói pra mim" → a IA improvisa → parece mágico → duas semanas depois os bugs
+              aparecem, um conserto quebra outro, e ninguém sabe dizer se está testado ou seguro.
+              Ganha em velocidade, perde o <b>controle</b>.</p>
+          </div>
+          <div class="card">
+            <div class="head"><code class="name">spec-driven</code></div>
+            <p>Intenção clara → aprovação humana → código derivado → cada passo com evidência.
+              A mesma velocidade da IA, mas com <b>controle, rastreabilidade e confiança</b> pra
+              levar à produção sem sustos.</p>
+          </div>
+        </div>
+        <div class="callout" style="margin-top:16px"><b>A grande ideia:</b> a IA não substitui o
+          engenheiro — ela muda o que o engenheiro faz. O trabalho deixa de ser produzir sintaxe e
+          passa a ser <b>produzir intenção clara e garantir o resultado</b>. O SDD é o método que
+          torna isso repetível.</div>
       </section>
 
       <section id="flow">
