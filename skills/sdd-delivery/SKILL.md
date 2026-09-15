@@ -25,6 +25,8 @@ Executa as tasks de `specs/<NNN>-<slug>/tasks.md` a partir dos artefatos reais d
    da task) e mostre o vermelho; depois o código mínimo pro verde; depois refactor. Seguir `solid`,
    `defensive-programming`, `dry`, `kiss`, `yagni`, `clean-code`, `error-handling`, `rich-domain`,
    `secure-by-default` conforme o design indicou, sempre dentro dos princípios da `constitution.md`.
+   Respeite as **convenções do próprio projeto** (estilo, lint/format, padrões do código ao redor);
+   elas têm **precedência** sobre as guidelines genéricas do kit.
 3. Rodar a verificação (testes/comando da "evidência esperada"), incluindo os casos de borda/erro.
 4. Só marcar `done` com **evidência objetiva** — colar o comando + resultado em "Evidência obtida"
    (o vermelho inicial e o verde final). Sem evidência, a task fica `in_progress` ou `blocked`

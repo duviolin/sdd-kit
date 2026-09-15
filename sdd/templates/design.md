@@ -33,6 +33,9 @@ Ex.: `tdd` (todo comportamento novo), `solid`, `defensive-programming` na borda 
 Disponíveis: `tdd`, `solid`, `defensive-programming`, `rich-domain`, `dry`, `kiss`, `yagni`,
 `clean-code`, `error-handling`, `secure-by-default`, `code-review`, `test-strategy`.
 
+> As guidelines do sdd-kit são uma **base**. As **guidelines/convenções do próprio projeto**
+> (CONTRIBUTING, guia de estilo, lint/format, padrões existentes) **têm precedência** — cite quais valem aqui.
+
 ## Ordem de execução
 
 1. <passo — vira task>

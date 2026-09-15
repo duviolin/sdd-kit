@@ -18,7 +18,8 @@ Converte um `requirements.md` **aprovado** em `specs/<NNN>-<slug>/design.md`.
 
 ## Passos
 
-1. Ler `requirements.md`, a `constitution.md` e o `architecture.md` do projeto.
+1. Ler `requirements.md`, a `constitution.md`, o `architecture.md` e as **convenções/guidelines do
+   próprio projeto** (CONTRIBUTING, guia de estilo, config de lint/format, padrões do código existente).
 2. Preencher a partir de `${CLAUDE_PLUGIN_ROOT}/sdd/templates/design.md`: estratégia técnica (1 recomendação,
    não catálogo), impacto por arquivo, dependências, riscos+mitigação, ordem de execução,
    validação planejada (como cada CA será provado), e a **branch** de trabalho (`feat|fix|chore/<slug>`).
@@ -26,7 +27,8 @@ Converte um `requirements.md` **aprovado** em `specs/<NNN>-<slug>/design.md`.
 4. Preencher a **Estratégia de testes** (nível + casos de borda/erro por CA) — ver `test-strategy`.
 5. Citar as guidelines relevantes de `${CLAUDE_PLUGIN_ROOT}/sdd/guidelines/` e **onde** importam
    (`tdd`, `test-strategy`, `solid`, `defensive-programming`, `rich-domain`, `dry`, `kiss`, `yagni`,
-   `clean-code`, `error-handling`, `secure-by-default`, `code-review`).
+   `clean-code`, `error-handling`, `secure-by-default`, `code-review`). As guidelines do sdd-kit são
+   uma **base**; as **guidelines/convenções do próprio projeto têm precedência** — onde conflitarem, o projeto vence.
 6. Gravar `design.md` com `Status: ready`.
 
 ## Regras

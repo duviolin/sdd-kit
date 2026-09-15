@@ -19,7 +19,9 @@ feature herda. É o documento que gateia `sdd-requirements`, `sdd-design`, `sdd-
 1. Ler `constitution.md` se já existir (documento vivo — atualizar com bump de versão, não recriar).
 2. Levantar os princípios reais: padrões de código/teste, política de erro e segurança, camadas
    permitidas/proibidas, processo (branch, revisão), restrições de negócio/plataforma. Basear-se
-   em evidência do repo + decisão humana — não inventar regra que o time não segue.
+   em evidência do repo + decisão humana — não inventar regra que o time não segue. Incorporar as
+   **guidelines/convenções já existentes no projeto** (CONTRIBUTING, guia de estilo, config de lint)
+   — a constituição as torna oficiais e o SDD passa a exigi-las.
 3. Preencher a partir de `${CLAUDE_PLUGIN_ROOT}/sdd/templates/constitution.md`. Cada princípio deve ser
    **verificável** (dá pra dizer objetivamente se foi violado).
 4. Escrever/atualizar `constitution.md` na raiz e registrar a versão no histórico.

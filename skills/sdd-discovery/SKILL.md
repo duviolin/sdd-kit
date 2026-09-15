@@ -27,5 +27,7 @@ Cria/atualiza `architecture.md` na raiz do projeto: visão técnica **real e atu
 - É **descritivo** (o que o sistema é). O que é **prescritivo** (regra inegociável) vive na
   `constitution.md` — não misturar os dois.
 - Registrar **decisões** e **restrições** — são o que specs/planos futuros precisam respeitar.
+- Capturar as **convenções e guidelines do próprio projeto** (guia de estilo, lint/format,
+  CONTRIBUTING, padrões do código) em "Restrições e convenções" — o SDD deve segui-las.
 - Não inventar arquitetura desejada; descrever a que existe, marcando gaps como tal.
 - Próximo passo natural: `sdd-requirements`.
