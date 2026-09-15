@@ -167,10 +167,10 @@
   <div class="wrap">
     <div class="eyebrow">Spec-Driven Development · skills globais do Claude Code</div>
     <h2>Da ideia ao merge, com trilha versionada.</h2>
-    <p class="lede">Nove skills <code class="inline">sdd-*</code> que padronizam o mesmo fluxo
-      em qualquer projeto: definir princípios, especificar em EARS, aprovar, planejar, quebrar em
-      tasks, checar consistência, implementar com evidência e validar contra o diff — com trava de
-      execução e cada passo registrado no próprio repositório.</p>
+    <p class="lede">Nove skills <code class="inline">sdd-*</code> que dão ao Claude Code um jeito
+      organizado de trabalhar em qualquer projeto: entender o pedido, combinar o que vai ser feito,
+      esperar você aprovar e só então implementar — testando cada passo e deixando tudo registrado
+      no próprio repositório.</p>
     <div class="meta">
       <span class="chip"><b>9</b> skills</span>
       <span class="chip"><b>7</b> templates</span>
@@ -197,7 +197,7 @@
       <a href="#era">A nova era (com IA)</a>
       <a href="#flow">O fluxo</a>
       <a href="#skills">As 9 skills</a>
-      <a href="#artifacts">Artefatos & auditoria</a>
+      <a href="#artifacts">Arquivos & histórico</a>
       <a href="#templates">Templates</a>
       <a href="#guidelines">Guidelines</a>
       <a href="#install">Instalar no Claude</a>
@@ -209,17 +209,16 @@
     <main>
       <section id="overview">
         <h3 class="sec">O que é</h3>
-        <p class="sec-note">problema → padrão portátil</p>
-        <p>O <b>sdd-kit</b> transforma o Spec-Driven Development num conjunto de skills que o
-          Claude Code carrega automaticamente em toda sessão. Em vez de reexplicar o processo a
-          cada projeto, você invoca a skill certa e ela gera o artefato certo, no lugar certo.</p>
-        <p>A ideia central é <b>auditoria persistida</b>: o repositório mostra todo o caminho
-          feito — princípios, requisitos, design, tasks, veredito — sem depender do histórico da conversa. Qualquer
-          pessoa, agente ou ferramenta consegue auditar depois, lendo arquivos versionados.</p>
-        <p>Tudo vive num <b>plugin do Claude Code</b>: as <b>skills</b> (<code class="inline">skills/sdd-*</code>),
-          os <b>assets</b> (<code class="inline">sdd/</code> — templates e guidelines que as skills
-          reaproveitam via <code class="inline">${CLAUDE_PLUGIN_ROOT}</code>) e o <b>hook de trava</b>.
-          Instala com <code class="inline">/plugin</code>, sem copiar nada à mão.</p>
+        <p class="sec-note">o que ele resolve</p>
+        <p>O <b>sdd-kit</b> ensina o Claude Code a seguir sempre o <b>mesmo passo a passo</b> em
+          qualquer projeto. Em vez de você explicar de novo, toda vez, como quer trabalhar, cada
+          skill já sabe o que fazer e onde salvar o resultado.</p>
+        <p>A ideia central: fica <b>tudo escrito no próprio repositório</b> — o pedido, o plano, as
+          tarefas e o resultado final. Assim qualquer pessoa (ou a própria IA, semanas depois)
+          entende o que foi feito sem precisar do histórico do chat.</p>
+        <p>Vem tudo num <b>plugin do Claude Code</b>: as skills (o passo a passo), os modelos de
+          documento e as boas práticas que elas reaproveitam, mais uma trava de segurança. Instala
+          com um comando, sem configurar nada na mão.</p>
       </section>
 
       <section id="sobre">
@@ -227,21 +226,20 @@
         <p class="sec-note">conceito · origem · diferencial</p>
 
         <h4>O que é</h4>
-        <p>Spec-Driven Development inverte quem manda no processo. No modelo tradicional, o
-          <b>código</b> é a fonte da verdade e a documentação corre atrás. No SDD, a
-          <b>especificação</b> é a fonte da verdade e o código é um artefato derivado dela. Você não
-          pede código direto: descreve com precisão <b>o quê</b> e <b>por quê</b> — de forma
-          verificável — e o agente deriva o <b>como</b>. A spec é viva, versionada, e cada critério
-          de aceite vira prova (teste/evidência).</p>
+        <p>Spec-Driven Development (SDD) inverte a ordem das coisas. No jeito tradicional, o
+          <b>código</b> é o que vale e a documentação corre atrás. No SDD, o que vale é a
+          <b>especificação</b> — a descrição clara do que você quer — e o código nasce a partir dela.
+          Você não pede código direto: descreve <b>o quê</b> e <b>por quê</b>, e a IA cuida do
+          <b>como</b>. Essa descrição fica viva, versionada, e cada combinado vira um teste que
+          prova que funcionou.</p>
 
         <h4>De onde veio</h4>
-        <p>A ideia de "a especificação guia a construção" é antiga — vem da engenharia de requisitos
-          e de práticas como <b>Design by Contract</b> (Bertrand Meyer), <b>TDD</b> (Kent Beck),
-          <b>BDD</b> (Dan North), <b>DDD</b> (Eric Evans) e os <b>ADRs/RFCs</b>. O que mudou foi a
-          <b>era dos agentes de IA (2024–2025)</b>: com LLMs escrevendo código rápido, o gargalo
-          deixou de ser digitar e passou a ser <b>especificar intenção sem ambiguidade</b>. Aí o SDD
-          virou prática nomeada, com a tese de que <i>a spec é o artefato durável — o código é
-          regenerável</i>.</p>
+        <p>Deixar a descrição guiar a construção é uma ideia antiga — aparece em práticas clássicas
+          como <b>Design by Contract</b> (Bertrand Meyer), <b>TDD</b> (Kent Beck), <b>BDD</b>
+          (Dan North) e <b>DDD</b> (Eric Evans). O que mudou foi a chegada das <b>IAs que programam
+          (2024–2025)</b>: como escrever código ficou rápido, o trabalho difícil passou a ser
+          <b>dizer com clareza o que você quer</b>. Foi aí que o SDD ganhou nome — com a ideia de que
+          a descrição é o que dura, e o código pode ser refeito a qualquer hora.</p>
 
         <h4>Os padrões por trás (sem jargão)</h4>
         <p>Todos esses nomes de três letras assustam, mas a ideia é simples. Pensa em
@@ -293,52 +291,54 @@
             <p>Junta todos: a <b>spec</b> é a fonte da verdade. <b>BDD</b> e <b>EARS</b> dão a
               linguagem pra escrevê-la sem ambiguidade; <b>DDD</b> molda o código na língua do
               negócio; <b>TDD</b> e <b>Design by Contract</b> são como você constrói e prova cada
-              pedaço. Nenhum substitui o outro — o SDD só orquestra tudo numa trilha auditável.</p>
+              pedaço. Nenhum substitui o outro — o SDD só junta tudo num caminho registrado do começo ao fim.</p>
             <div class="out"><b>Na prática:</b> intenção primeiro, código derivado dela, cada passo provado — os outros padrões viram as peças desse todo.</div>
           </div>
         </div>
 
         <h4>Os famosos</h4>
         <div class="pills">
-          <div class="pill"><code>GitHub Spec Kit</code><span>CLI <code class="inline">specify</code>; constitution → specify → clarify → plan → tasks → analyze → implement. Agnóstico de agente.</span></div>
-          <div class="pill"><code>Amazon Kiro</code><span>IDE agêntico da AWS: requirements (EARS) → design → tasks, com steering files e hooks.</span></div>
-          <div class="pill"><code>Tessl</code><span>Abordagem spec-centric: a spec como artefato central, com registro/versionamento.</span></div>
+          <div class="pill"><code>GitHub Spec Kit</code><span>Da GitHub. O passo a passo mais conhecido de SDD; funciona com vários assistentes de IA.</span></div>
+          <div class="pill"><code>Amazon Kiro</code><span>Editor de código da AWS com SDD embutido: requisitos → design → tarefas.</span></div>
+          <div class="pill"><code>Tessl</code><span>Aposta na especificação como peça central do projeto, versionada como código.</span></div>
         </div>
 
         <h4>Por que usar</h4>
         <ul style="max-width:66ch; padding-left:20px; margin:8px 0; color:var(--ink-soft)">
-          <li>Erra no barato (texto) antes de gastar no caro (execução/código).</li>
-          <li>Tira a ambiguidade — a IA para de adivinhar escopo e alucinar features.</li>
-          <li>Output revisável: produto e engenharia revisam intenção antes de qualquer linha.</li>
-          <li>Trilha auditável no repo, independente do histórico da conversa.</li>
-          <li>Rastreabilidade ponta a ponta: requisito → critério → task → evidência.</li>
+          <li>Você erra no barato (no texto) antes de gastar no caro (código já feito).</li>
+          <li>Some a ambiguidade — a IA para de adivinhar e de inventar coisa que ninguém pediu.</li>
+          <li>Dá pra revisar a intenção <b>antes</b> de qualquer linha de código sair.</li>
+          <li>Fica tudo registrado no repositório, sem depender do histórico do chat.</li>
+          <li>Você consegue ligar cada linha de código ao pedido que a originou.</li>
         </ul>
 
         <h4>Quando usar</h4>
         <div class="skills">
           <div class="card">
             <div class="head"><code class="name">use</code></div>
-            <p>Feature nova, mudança de comportamento/contrato/API, trabalho com mais de uma pessoa,
-              contexto que exige auditoria, e sempre que a IA for implementar algo não-trivial.</p>
+            <p>Funcionalidade nova, mudança que afeta o comportamento do sistema, trabalho em time,
+              coisas que precisam ficar documentadas, e sempre que a IA for construir algo que não é trivial.</p>
           </div>
           <div class="card">
             <div class="head"><code class="name" style="background:var(--gate-soft); color:var(--gate)">evite</code></div>
-            <p>Spike/protótipo descartável, correção de uma linha óbvia, exploração pura. SDD é peso
-              proporcional — para o trivial, ele atrapalha.</p>
+            <p>Protótipo pra jogar fora, correção de uma linha óbvia, ou quando você só está
+              explorando. Pra coisa pequena, o SDD vira burocracia — não compensa.</p>
           </div>
         </div>
 
-        <h4>Nosso diferencial · por que este kit existe</h4>
-        <p>Spec Kit e Kiro são ótimos, mas genéricos. Este kit pega a maturidade da comunidade e soma
-          <b>auditoria persistida + governança de entrega + disciplina de evidência</b>, num pacote
-          que instala em um comando e roda em qualquer repositório:</p>
+        <h4>Onde este kit se encaixa</h4>
+        <p>Sendo honesto: já existem vários kits de SDD bons (Spec Kit, OpenSpec, Kiro), alguns bem
+          maiores que este. O sdd-kit não reinventa a roda — é uma versão <b>enxuta, em português e
+          nativa como plugin</b> do Claude Code, com algumas escolhas que gosto:</p>
         <ul style="max-width:66ch; padding-left:20px; margin:8px 0; color:var(--ink-soft)">
-          <li><b>Nativo no Claude Code, em qualquer projeto</b> — skills globais, disparo por linguagem natural, nada copiado por repo.</li>
-          <li><b>Veredito de saída auditável</b> (<code class="inline">acceptance.md</code>) contra o diff da branch — o que Spec Kit/Kiro não têm.</li>
-          <li><b>Constitution como lei do projeto</b> — princípios inegociáveis que gateiam todas as fases.</li>
-          <li><b>Gate de consistência</b> (<code class="inline">sdd-analyze</code>) antes de gastar execução.</li>
-          <li><b>Disciplina de evidência</b> — nenhuma task fecha sem prova objetiva colada.</li>
-          <li><b>EARS + Gherkin</b>: requisito sem ambiguidade e critério verificável, juntos.</li>
+          <li><b>Roda em qualquer projeto</b> sem instalar nada por repositório; as skills também
+            atendem quando você pede em português comum.</li>
+          <li><b>Um "documento final" que dá o veredito</b> da entrega, conferido contra o que
+            realmente mudou no código.</li>
+          <li><b>Regras do projeto viram lei</b> — princípios que valem para todas as etapas.</li>
+          <li><b>Uma conferida de consistência</b> antes de a IA começar a escrever código.</li>
+          <li><b>Nada é dado como pronto sem prova</b> — cada tarefa fecha com um teste passando.</li>
+          <li><b>Leve e fácil de ler/adaptar</b>: é só texto (markdown) + um script pequeno.</li>
         </ul>
       </section>
 
@@ -376,7 +376,7 @@
             <text x="536" y="169" text-anchor="middle" font-size="13" fill="var(--ink)">código</text>
             <text x="536" y="185" text-anchor="middle" font-size="10.5" fill="var(--muted)">derivado · provado por testes</text>
           </svg>
-          <figcaption style="font-family:var(--f-mono); font-size:11.5px; color:var(--muted); padding:2px 16px 14px">A intenção vira o artefato durável; o código, o subproduto regenerável.</figcaption>
+          <figcaption style="font-family:var(--f-mono); font-size:11.5px; color:var(--muted); padding:2px 16px 14px">A intenção é o que dura; o código é o que dá pra refazer.</figcaption>
         </figure>
 
         <h4>2 · O gargalo mudou de lugar</h4>
@@ -480,7 +480,7 @@
 
       <section id="flow">
         <h3 class="sec">O fluxo</h3>
-        <p class="sec-note">pipeline com gate de aprovação humana</p>
+        <p class="sec-note">o passo a passo, com a sua aprovação no meio</p>
         <div class="flow" style="display:block; padding:24px 22px">
           <div style="font-family:var(--f-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:10px">Nível projeto · 1x (opcional)</div>
           <div style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:22px">
@@ -489,7 +489,7 @@
           </div>
           <div style="font-family:var(--f-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:10px">Por feature</div>
           <div style="display:flex; flex-wrap:wrap; align-items:stretch; gap:6px">
-            <span style="display:flex; flex-direction:column; gap:2px; border:1px solid var(--accent); background:var(--accent-soft); color:var(--accent-ink); border-radius:10px; padding:8px 12px; font-family:var(--f-mono); font-size:12.5px; font-weight:600">sdd-requirements<small style="font-weight:400; font-size:10.5px">requirements.md · EARS</small></span>
+            <span style="display:flex; flex-direction:column; gap:2px; border:1px solid var(--accent); background:var(--accent-soft); color:var(--accent-ink); border-radius:10px; padding:8px 12px; font-family:var(--f-mono); font-size:12.5px; font-weight:600">sdd-requirements<small style="font-weight:400; font-size:10.5px">o pedido, bem escrito</small></span>
             <span style="align-self:center; color:var(--muted); font-family:var(--f-mono)">→</span>
             <span style="display:flex; flex-direction:column; gap:2px; border:1px solid var(--gate); background:var(--gate-soft); color:var(--gate); border-radius:10px; padding:8px 12px; font-family:var(--f-mono); font-size:12.5px; font-weight:600">✋ aprovação<small style="font-weight:400; font-size:10.5px">humana</small></span>
             <span style="align-self:center; color:var(--muted); font-family:var(--f-mono)">→</span>
@@ -497,21 +497,21 @@
             <span style="align-self:center; color:var(--muted); font-family:var(--f-mono)">→</span>
             <span style="display:flex; flex-direction:column; gap:2px; border:1px solid var(--accent); background:var(--accent-soft); color:var(--accent-ink); border-radius:10px; padding:8px 12px; font-family:var(--f-mono); font-size:12.5px; font-weight:600">sdd-backlog<small style="font-weight:400; font-size:10.5px">tasks.md</small></span>
             <span style="align-self:center; color:var(--muted); font-family:var(--f-mono)">→</span>
-            <span style="display:flex; flex-direction:column; gap:2px; border:1px dashed var(--accent); background:var(--accent-soft); color:var(--accent-ink); border-radius:10px; padding:8px 12px; font-family:var(--f-mono); font-size:12.5px; font-weight:600">sdd-analyze<small style="font-weight:400; font-size:10.5px">gate de consistência</small></span>
+            <span style="display:flex; flex-direction:column; gap:2px; border:1px dashed var(--accent); background:var(--accent-soft); color:var(--accent-ink); border-radius:10px; padding:8px 12px; font-family:var(--f-mono); font-size:12.5px; font-weight:600">sdd-analyze<small style="font-weight:400; font-size:10.5px">confere se bate</small></span>
             <span style="align-self:center; color:var(--muted); font-family:var(--f-mono)">→</span>
-            <span style="display:flex; flex-direction:column; gap:2px; border:1px solid var(--accent); background:var(--accent-soft); color:var(--accent-ink); border-radius:10px; padding:8px 12px; font-family:var(--f-mono); font-size:12.5px; font-weight:600">sdd-delivery<small style="font-weight:400; font-size:10.5px">1 task/vez · evidência</small></span>
+            <span style="display:flex; flex-direction:column; gap:2px; border:1px solid var(--accent); background:var(--accent-soft); color:var(--accent-ink); border-radius:10px; padding:8px 12px; font-family:var(--f-mono); font-size:12.5px; font-weight:600">sdd-delivery<small style="font-weight:400; font-size:10.5px">uma tarefa por vez, com prova</small></span>
             <span style="align-self:center; color:var(--muted); font-family:var(--f-mono)">→</span>
             <span style="display:flex; flex-direction:column; gap:2px; border:1px solid var(--line); background:var(--surface-2); color:var(--ink); border-radius:10px; padding:8px 12px; font-family:var(--f-mono); font-size:12.5px; font-weight:600">sdd-acceptance<small style="font-weight:400; font-size:10.5px; color:var(--muted)">acceptance.md</small></span>
           </div>
-          <div style="font-family:var(--f-mono); font-size:10.5px; color:var(--muted); margin-top:12px">delivery repete uma task por turno até fechar o backlog</div>
+          <div style="font-family:var(--f-mono); font-size:10.5px; color:var(--muted); margin-top:12px">a implementação repete, uma tarefa por vez, até acabar a lista</div>
         </div>
-        <p style="margin-top:18px">O <code class="inline">sdd-discovery</code> é opcional e roda
-          uma vez por projeto. O coração é linear: <b>requirements → aprovação → design → backlog →
-          delivery → acceptance</b>. O <code class="inline">sdd-delivery</code> repete, uma task por
-          turno, até fechar o backlog; então o <code class="inline">sdd-acceptance</code> emite o veredito.</p>
-        <div class="callout"><b>O gate é a regra de ouro.</b> A <code class="inline">sdd-requirements</code>
-          sempre para e pede um "aprovado" humano explícito. Ela nunca gera plano nem código no
-          mesmo turno — é o ponto onde produto decide antes de engenharia executar.</div>
+        <p style="margin-top:18px">As duas primeiras (princípios e arquitetura) são opcionais e
+          rodam uma vez por projeto. O miolo é uma linha reta: <b>pedido → você aprova → plano →
+          lista de tarefas → conferência → implementação → resultado final</b>. A implementação
+          repete, uma tarefa por vez, até acabar a lista; então o kit emite o resultado da entrega.</p>
+        <div class="callout"><b>A aprovação é a regra de ouro.</b> A skill de requisitos <b>sempre
+          para</b> e espera você dizer "aprovado". Ela nunca sai fazendo plano nem código no mesmo
+          passo — é o momento em que você decide antes de a IA executar.</div>
       </section>
 
       <section id="skills">
@@ -520,146 +520,143 @@
         <div class="skills">
           <div class="card">
             <div class="head"><span class="num">01</span><code class="name">sdd-constitution</code></div>
-            <div class="role">princípios · opcional · 1x</div>
-            <p>Define os princípios inegociáveis do projeto — padrões de código/teste, política de
-              erro e segurança, camadas proibidas, processo. É prescritivo e governa todas as fases.</p>
-            <div class="out">→ <b>constitution.md</b> na raiz (1 por projeto, versionado)</div>
+            <div class="role">regras do projeto · opcional</div>
+            <p>Define as regras inegociáveis do projeto — padrões de código e teste, como tratar
+              erros e segurança, o que é proibido, como é o processo. Valem para todas as etapas.</p>
+            <div class="out">→ <b>constitution.md</b> na raiz (1 por projeto)</div>
           </div>
 
           <div class="card">
             <div class="head"><span class="num">02</span><code class="name">sdd-discovery</code></div>
-            <div class="role">baseline · opcional</div>
-            <p>Explora o projeto real (pastas, deps, integrações, camadas) e cria/atualiza um
-              retrato técnico atual — não aspiracional. É descritivo, complementa a constitution.</p>
-            <div class="out">→ <b>architecture.md</b> na raiz (1 por projeto, documento vivo)</div>
+            <div class="role">retrato do projeto · opcional</div>
+            <p>Vasculha o projeto de verdade (pastas, dependências, integrações) e escreve um retrato
+              técnico de como ele <b>está hoje</b> — não como gostaríamos que fosse.</p>
+            <div class="out">→ <b>architecture.md</b> na raiz (1 por projeto)</div>
           </div>
 
           <div class="card">
             <div class="head"><span class="num">03</span><code class="name">sdd-requirements</code></div>
-            <div class="role">especificar · gatilho de entrada</div>
-            <p>Transforma história, descrição, ticket ou código em requisitos: problema, escopo
-              dentro/fora, requisitos em <b>EARS</b>, critérios de aceite (Dado/Quando/Então),
-              premissas. Faz o <i>clarify</i> e cria a pasta numerada da feature.</p>
-            <div class="out">→ <b>specs/&lt;NNN&gt;-&lt;slug&gt;/requirements.md</b> · status <code class="inline">awaiting_approval</code></div>
+            <div class="role">escrever o pedido · porta de entrada</div>
+            <p>Pega uma história, um ticket, uma descrição ou um trecho de código e transforma num
+              <b>pedido bem escrito</b>: o problema, o que entra e o que fica de fora, os requisitos e
+              os combinados de aceite. Antes, faz perguntas pra tirar qualquer dúvida.</p>
+            <div class="out">→ <b>specs/&lt;NNN&gt;-&lt;slug&gt;/requirements.md</b> · aguardando aprovação</div>
           </div>
 
           <div class="card gate">
             <div class="head"><span class="num">✋</span><strong style="font-family:var(--f-display)">Aprovação humana</strong></div>
-            <div class="role">gate obrigatório</div>
-            <p>Não é uma skill — é a parada. Os requisitos são resumidos e submetidos a você. Só um
-              "aprovado"/"segue" explícito libera o próximo passo. Sem branch, sem código antes disso.</p>
-            <div class="out" style="border-color:var(--gate)">requirements.md → <b>approved</b></div>
+            <div class="role">parada obrigatória</div>
+            <p>Não é uma skill — é a parada. O pedido é resumido e mostrado pra você. Só um
+              "aprovado" libera o próximo passo. Nada de código antes disso.</p>
+            <div class="out" style="border-color:var(--gate)">requirements.md → <b>aprovado</b></div>
           </div>
 
           <div class="card">
             <div class="head"><span class="num">04</span><code class="name">sdd-design</code></div>
-            <div class="role">planejar · pós-aprovação</div>
-            <p>Converte os requisitos aprovados em estratégia técnica: impacto por arquivo,
-              dependências, riscos, ordem de execução e como cada critério será provado. Recusa
-              rodar sem aprovação e respeita a constitution.</p>
-            <div class="out">→ <b>design.md</b> · cita as guidelines aplicáveis</div>
+            <div class="role">planejar · depois da aprovação</div>
+            <p>Transforma o pedido aprovado num <b>plano técnico</b>: onde mexer, riscos, a ordem das
+              coisas e como cada combinado vai ser provado. Não roda sem aprovação e segue as regras
+              do projeto.</p>
+            <div class="out">→ <b>design.md</b> · aponta as boas práticas que valem aqui</div>
           </div>
 
           <div class="card">
             <div class="head"><span class="num">05</span><code class="name">sdd-backlog</code></div>
-            <div class="role">decompor</div>
-            <p>Quebra o design em tasks executáveis e verificáveis. Cada task carrega origem
-              (rastreio ao requisito), evidência esperada, bloqueios, status e marcador <code class="inline">[P]</code> de paralelismo.</p>
-            <div class="out">→ <b>tasks.md</b> · nada órfão, tudo rastreia a um critério</div>
+            <div class="role">dividir em tarefas</div>
+            <p>Quebra o plano em <b>tarefas pequenas</b> e verificáveis. Cada uma diz de onde veio, o
+              que prova que terminou, o que a bloqueia, e marca com <code class="inline">[P]</code> as
+              que dá pra fazer em paralelo.</p>
+            <div class="out">→ <b>tasks.md</b> · cada tarefa ligada a um combinado</div>
           </div>
 
           <div class="card">
             <div class="head"><span class="num">06</span><code class="name">sdd-analyze</code></div>
-            <div class="role">consistência · gate</div>
-            <p>Checa coerência entre requirements ↔ design ↔ tasks antes de gastar execução: tudo
-              coberto, nada órfão, nada fora do escopo, nada contra a constitution. Não escreve código.</p>
-            <div class="out">→ veredito <b>consistente / inconsistente</b> (bloqueia se vermelho)</div>
+            <div class="role">conferência</div>
+            <p>Antes de a IA escrever código, <b>confere se tudo bate</b>: todo pedido tem plano?
+              toda tarefa tem motivo? nada fora do escopo? nada contra as regras? Não escreve código.</p>
+            <div class="out">→ diz se está <b>ok ou não</b> (e trava se não estiver)</div>
           </div>
 
           <div class="card">
             <div class="head"><span class="num">07</span><code class="name">sdd-delivery</code></div>
-            <div class="role">executar · 1 task/turno</div>
-            <p>Implementa a partir dos artefatos reais, aplicando as guidelines (TDD primeiro).
-              Só marca uma task como <code class="inline">done</code> com evidência objetiva colada —
-              teste verde, saída, diff.</p>
-            <div class="out">→ código na branch + <b>evidência</b> em cada task</div>
+            <div class="role">implementar · uma por vez</div>
+            <p>Escreve o código de verdade, seguindo as boas práticas (teste primeiro). Só marca uma
+              tarefa como <b>feita</b> quando cola a prova — o teste passando.</p>
+            <div class="out">→ código pronto + a <b>prova</b> em cada tarefa</div>
           </div>
 
           <div class="card">
             <div class="head"><span class="num">08</span><code class="name">sdd-acceptance</code></div>
-            <div class="role">validar · veredito</div>
-            <p>Confere a entrega contra o diff da branch: escopo bate com os requisitos? cobertura
-              contra o piso da constitution? caminhos de erro e NFR provados? Emite o veredito auditável.</p>
-            <div class="out">→ <b>acceptance.md</b> · aprovado / com-ressalvas / reprovado</div>
+            <div class="role">validar a entrega</div>
+            <p>Confere a entrega contra o que <b>realmente mudou</b> no código: o escopo bate com o
+              pedido? tem teste suficiente? os casos de erro foram cobertos? Emite o resultado final.</p>
+            <div class="out">→ <b>acceptance.md</b> · aprovado / com ressalvas / reprovado</div>
           </div>
 
           <div class="card">
             <div class="head"><span class="num">✳</span><code class="name">sdd-state</code></div>
-            <div class="role">transversal · trava &amp; retomada</div>
-            <p>Mantém o <code class="inline">state.md</code> (o que está rodando, onde paramos) e o
-              <code class="inline">.sdd/lock</code>: uma feature ativa por vez. O hook
-              <code class="inline">sdd-lock</code> bloqueia escrita fora da branch dona — duas janelas
-              não se sobrescrevem.</p>
-            <div class="out">→ <b>state.md</b> + <b>.sdd/lock</b> · lock advisory reforçada</div>
+            <div class="role">trava &amp; retomar · usada o tempo todo</div>
+            <p>Guarda num arquivo <b>o que está em andamento e onde vocês pararam</b>, e trava para
+              uma coisa ativa por vez. Se você abrir outra janela em outra branch, a trava impede que
+              uma sobrescreva o trabalho da outra.</p>
+            <div class="out">→ <b>state.md</b> + a trava · retoma de onde parou</div>
           </div>
         </div>
       </section>
 
       <section id="artifacts">
-        <h3 class="sec">Artefatos & auditoria</h3>
+        <h3 class="sec">Arquivos & histórico</h3>
         <p class="sec-note">a trilha que fica no repositório</p>
-        <p>Cada feature vive numa pasta numerada dentro de <code class="inline">specs/</code> do
-          projeto-alvo. O número <code class="inline">&lt;NNN&gt;</code> é o próximo livre; o
-          <code class="inline">&lt;slug&gt;</code> é o título em kebab-case. A
-          <code class="inline">constitution.md</code> e o <code class="inline">architecture.md</code>
-          ficam na raiz, únicos por projeto.</p>
-        <div class="tree">&lt;projeto&gt;/
-├── <b>constitution.md</b>            <span style="color:var(--muted)"># princípios inegociáveis (sdd-constitution)</span>
-├── <b>architecture.md</b>            <span style="color:var(--muted)"># visão técnica real (sdd-discovery)</span>
-├── <b>state.md</b>                   <span style="color:var(--muted)"># o que roda + histórico (sdd-state)</span>
-├── <b>.sdd/lock</b>                  <span style="color:var(--muted)"># trava, reforçada pelo hook sdd-lock</span>
+        <p>Cada funcionalidade ganha uma <b>pasta numerada</b> dentro de <code class="inline">specs/</code>
+          no seu projeto. Os arquivos <code class="inline">constitution.md</code> e
+          <code class="inline">architecture.md</code> ficam na raiz, um por projeto.</p>
+        <div class="tree">&lt;seu projeto&gt;/
+├── <b>constitution.md</b>            <span style="color:var(--muted)"># as regras do projeto</span>
+├── <b>architecture.md</b>            <span style="color:var(--muted)"># como o sistema é hoje</span>
+├── <b>state.md</b>                   <span style="color:var(--muted)"># o que está rodando + histórico</span>
+├── <b>.sdd/lock</b>                  <span style="color:var(--muted)"># a trava (evita duas janelas se atropelarem)</span>
 └── <b>specs/</b>
     └── <span class="a">001-exportar-relatorio/</span>
-        ├── <b>requirements.md</b>            <span style="color:var(--muted)"># o quê e por quê + critérios</span>
-        ├── <b>design.md</b>            <span style="color:var(--muted)"># estratégia técnica + estratégia de testes</span>
-        ├── <b>tasks.md</b>           <span style="color:var(--muted)"># tarefas + casos de borda + evidência</span>
-        └── <span class="g">acceptance.md</span>         <span style="color:var(--muted)"># veredito final da entrega</span></div>
-        <p style="margin-top:16px">Cada arquivo tem um cabeçalho <code class="inline">Status:</code>.
-          O estado do trabalho vive no arquivo, não na conversa — é isso que torna a auditoria
-          independente do chat.</p>
+        ├── <b>requirements.md</b>            <span style="color:var(--muted)"># o quê e por quê + combinados</span>
+        ├── <b>design.md</b>            <span style="color:var(--muted)"># o plano técnico + como testar</span>
+        ├── <b>tasks.md</b>           <span style="color:var(--muted)"># as tarefas + casos de erro + a prova</span>
+        └── <span class="g">acceptance.md</span>         <span style="color:var(--muted)"># o resultado final da entrega</span></div>
+        <p style="margin-top:16px">Cada arquivo tem um campo <code class="inline">Status:</code> no
+          topo. O andamento vive no arquivo, não na conversa — por isso dá pra <b>retomar (ou revisar)
+          sem depender do chat</b>.</p>
       </section>
 
       <section id="templates">
         <h3 class="sec">Templates</h3>
         <p class="sec-note">sdd/templates/ (no plugin)</p>
-        <p>Esqueletos que as skills copiam e preenchem, garantindo que toda feature siga a mesma
+        <p>Modelos prontos que as skills copiam e preenchem, pra toda funcionalidade seguir a mesma
           estrutura. São sete:</p>
         <div class="pills">
-          <div class="pill"><code>constitution.md</code><span>princípios inegociáveis, piso de QA, restrições</span></div>
-          <div class="pill"><code>architecture.md</code><span>componentes, integrações, decisões, restrições</span></div>
-          <div class="pill"><code>state.md</code><span>o que roda, etapa, branch, dono + histórico</span></div>
-          <div class="pill"><code>requirements.md</code><span>problema, escopo, requisitos EARS, critérios</span></div>
-          <div class="pill"><code>design.md</code><span>estratégia, impacto, riscos, validação planejada</span></div>
-          <div class="pill"><code>tasks.md</code><span>tasks com origem, evidência esperada e status</span></div>
-          <div class="pill"><code>acceptance.md</code><span>escopo × requisitos, cobertura, diff, veredito</span></div>
+          <div class="pill"><code>constitution.md</code><span>as regras do projeto e o mínimo de qualidade</span></div>
+          <div class="pill"><code>architecture.md</code><span>componentes, integrações e decisões</span></div>
+          <div class="pill"><code>state.md</code><span>o que está rodando, em que etapa + histórico</span></div>
+          <div class="pill"><code>requirements.md</code><span>problema, escopo, requisitos e combinados</span></div>
+          <div class="pill"><code>design.md</code><span>o plano: onde mexer, riscos e como testar</span></div>
+          <div class="pill"><code>tasks.md</code><span>tarefas com origem, prova esperada e status</span></div>
+          <div class="pill"><code>acceptance.md</code><span>bate com o pedido? testes? o veredito final</span></div>
         </div>
       </section>
 
       <section id="guidelines">
         <h3 class="sec">Guidelines</h3>
-        <p class="sec-note">sdd/guidelines/ · princípios que design e delivery citam</p>
-        <p>Referências curtas de engenharia. O <code class="inline">sdd-design</code> aponta quais
-          importam para a feature e onde; o <code class="inline">sdd-delivery</code> as aplica.</p>
+        <p class="sec-note">boas práticas que o kit já traz</p>
+        <p>Lembretes curtos de boa engenharia. O plano aponta quais valem para cada funcionalidade e
+          onde; a implementação as aplica.</p>
         <div class="callout">Estas são uma <b>base</b>. As <b>guidelines e convenções do próprio
           projeto</b> onde o kit roda (CONTRIBUTING, guia de estilo, lint/format, padrões do código
           existente) <b>têm precedência</b> — o SDD lê e respeita as regras da casa antes das genéricas.</div>
         <div class="pills">
           <div class="pill"><code>tdd</code><span>teste que falha → código → refactor</span></div>
-          <div class="pill"><code>test-strategy</code><span>pirâmide, nível por CA, borda/negativo/erro</span></div>
-          <div class="pill"><code>solid</code><span>5 princípios de OO sustentável</span></div>
-          <div class="pill"><code>defensive-programming</code><span>rejeite o inválido na borda (fail fast)</span></div>
-          <div class="pill"><code>rich-domain</code><span>regra junto do dado, não em serviços</span></div>
-          <div class="pill"><code>dry</code><span>uma fonte da verdade por conhecimento</span></div>
+          <div class="pill"><code>test-strategy</code><span>cobrir também erro e borda, não só o caminho feliz</span></div>
+          <div class="pill"><code>solid</code><span>5 princípios de código orientado a objetos</span></div>
+          <div class="pill"><code>defensive-programming</code><span>rejeite entrada inválida logo na porta</span></div>
+          <div class="pill"><code>rich-domain</code><span>a regra junto do dado, não espalhada por aí</span></div>
+          <div class="pill"><code>dry</code><span>cada conhecimento num lugar só</span></div>
           <div class="pill"><code>kiss</code><span>a solução mais simples que resolve</span></div>
           <div class="pill"><code>yagni</code><span>só o requisito atual, nada especulativo</span></div>
           <div class="pill"><code>clean-code</code><span>nomes e legibilidade para quem lê depois</span></div>
@@ -695,18 +692,18 @@
       <section id="preparar">
         <h3 class="sec">Preparando o projeto</h3>
         <p class="sec-note">constitution &amp; architecture · com a IA, uma vez por projeto</p>
-        <p>Antes da primeira feature, vale criar os dois documentos de projeto. A ideia central:
+        <p>Antes da primeira funcionalidade, vale criar os dois documentos de projeto. A ideia central:
           <b>você não escreve sozinho e a IA não inventa sozinha</b> — é uma conversa. A IA lê o
           repositório, propõe, <b>pergunta o que só você sabe</b>, e você decide. Some o
           documento em branco assustador.</p>
 
-        <h4>constitution.md — os princípios (prescritivo)</h4>
-        <p>Diz o que <b>sempre/nunca</b> vale no projeto. Como a IA não pode adivinhar as suas
+        <h4>constitution.md — as regras do projeto</h4>
+        <p>Diz o que <b>sempre/nunca</b> vale no projeto. Como a IA não tem como adivinhar as suas
           regras, aqui ela <b>puxa por perguntas</b>.</p>
         <ol class="steps">
           <li>Invoque <code class="inline">/sdd-kit:sdd-constitution</code> (ou diga <i>"vamos definir
             os princípios/constituição deste projeto"</i>).</li>
-          <li>A IA lê o repo (linter, testes, estrutura) e <b>faz perguntas de decisão</b>, por exemplo:
+          <li>A IA lê o projeto (configuração de lint, testes, estrutura) e <b>faz perguntas</b>, por exemplo:
             <pre><span class="c"># o que a IA vai te perguntar</span>
 Qual a cobertura mínima de testes? (ex.: 80% / 100% da regra nova)
 Que tipos de teste são obrigatórios? (unit sempre? integração na borda?)
@@ -714,69 +711,68 @@ Quais camadas/dependências são PROIBIDAS? (ex.: UI não chama repositório dir
 Política de erro e de segredo? Padrão de branch e de review?
 O que BLOQUEIA um merge?</pre></li>
           <li>Você responde (ou diz "usa um padrão sensato e eu ajusto"). A IA grava a
-            <code class="inline">constitution.md</code> com <b>princípios verificáveis</b> — dá pra
-            dizer objetivamente se foram violados — e versiona.</li>
-          <li>Revise. Mudou algo? Rode a skill de novo: ela <b>atualiza com bump de versão</b>, não recria.</li>
+            <code class="inline">constitution.md</code> com <b>regras que dá pra checar</b> — dá pra
+            dizer com clareza se foram quebradas.</li>
+          <li>Revise. Mudou algo? Rode a skill de novo: ela <b>atualiza criando uma nova versão</b>, não recria do zero.</li>
         </ol>
-        <div class="callout"><b>Dica pra repo novo/vazio:</b> a IA tem pouco código pra ler, então
-          a constituição vem mais das <b>suas respostas</b>. Num repo existente, ela infere muito do
+        <div class="callout"><b>Dica pra projeto novo/vazio:</b> a IA tem pouco código pra ler, então
+          as regras vêm mais das <b>suas respostas</b>. Num projeto que já existe, ela deduz muito do
           que já está lá e você só confirma/ajusta.</div>
 
-        <h4>architecture.md — o retrato técnico (descritivo)</h4>
+        <h4>architecture.md — o retrato do sistema</h4>
         <p>Diz o que o sistema <b>é hoje</b> (não o ideal). Aqui a IA faz o trabalho pesado:
           <b>ela explora e escreve o rascunho</b>, você valida.</p>
         <ol class="steps">
           <li>Invoque <code class="inline">/sdd-kit:sdd-discovery</code> (ou diga <i>"mapeia a
             arquitetura deste projeto"</i>).</li>
-          <li>A IA <b>varre o código</b> — pastas, manifestos de dependência, entrypoints,
-            integrações, camadas — e monta o retrato <b>com base em evidência</b>, marcando o que é
-            gap em vez de inventar.</li>
+          <li>A IA <b>varre o código</b> — pastas, arquivos de dependências, pontos de entrada,
+            integrações — e monta o retrato <b>com base no que achou</b>, marcando o que falta em vez
+            de inventar.</li>
           <li>Ela grava a <code class="inline">architecture.md</code>: visão geral, componentes,
-            integrações, dependências, fluxos-chave, decisões e restrições.</li>
-          <li>Você <b>revisa e corrige</b> o que a leitura do código não captou (o "porquê" de
-            decisões, restrições de negócio). Evoluiu o sistema? Rode de novo pra atualizar.</li>
+            integrações, dependências, fluxos principais, decisões e restrições.</li>
+          <li>Você <b>revisa e corrige</b> o que a leitura do código não pegou (o "porquê" de certas
+            decisões, regras de negócio). Evoluiu o sistema? Rode de novo pra atualizar.</li>
         </ol>
         <div class="callout"><b>Por que os dois?</b> A <code class="inline">constitution.md</code> é a
           <b>lei</b> (o que você promete seguir); a <code class="inline">architecture.md</code> é o
-          <b>mapa</b> (como o sistema está). Juntos, dão à IA o contexto pra escrever specs e planos
+          <b>mapa</b> (como o sistema está). Juntos, dão à IA o contexto pra escrever pedidos e planos
           que respeitam o seu projeto — em vez de sugestões genéricas.</div>
       </section>
 
       <section id="run">
         <h3 class="sec">Como rodar</h3>
-        <p class="sec-note">o ciclo de uma feature</p>
+        <p class="sec-note">o dia a dia de uma funcionalidade</p>
         <p>Dentro de qualquer projeto, numa sessão nova do Claude Code:</p>
         <ol class="steps">
-          <li>Descreva a feature — ou invoque <code class="inline">/sdd-kit:sdd-requirements</code>. Ela cria
+          <li>Descreva a funcionalidade — ou chame <code class="inline">/sdd-kit:sdd-requirements</code>. Ela cria
             <code class="inline">specs/001-&lt;slug&gt;/requirements.md</code> e <b>para pedindo aprovação</b>.</li>
           <li>Revise os requisitos. Responda <span class="kbd">aprovado</span> (ou peça ajustes). Só então
             o fluxo avança.</li>
           <li><code class="inline">/sdd-kit:sdd-design</code> gera o <code class="inline">design.md</code>;
             <code class="inline">/sdd-kit:sdd-backlog</code> gera o <code class="inline">tasks.md</code>.</li>
-          <li><code class="inline">/sdd-kit:sdd-analyze</code> confere a consistência entre requirements,
-            design e tasks antes de codar — bloqueia se algo não bate.</li>
-          <li><code class="inline">/sdd-kit:sdd-delivery</code> executa uma task por turno, com teste e
-            evidência. Repita até fechar o backlog.</li>
-          <li><code class="inline">/sdd-kit:sdd-acceptance</code> confere contra o diff da branch — cobertura
-            contra o piso da constitution, caminhos de erro e NFR provados — e escreve o
-            <code class="inline">acceptance.md</code> com o veredito.</li>
+          <li><code class="inline">/sdd-kit:sdd-analyze</code> confere se pedido, plano e tarefas
+            batem entre si — antes de escrever qualquer código; trava se algo não fecha.</li>
+          <li><code class="inline">/sdd-kit:sdd-delivery</code> faz uma tarefa por vez, com teste e
+            prova. Repita até acabar a lista.</li>
+          <li><code class="inline">/sdd-kit:sdd-acceptance</code> confere contra o que <b>realmente
+            mudou</b> no código — testes suficientes, casos de erro cobertos, requisitos de
+            desempenho/segurança provados — e escreve o <code class="inline">acceptance.md</code> com o resultado.</li>
         </ol>
-        <p style="margin-top:4px"><b>Trava &amp; retomada:</b> ao começar, o
-          <code class="inline">/sdd-kit:sdd-state</code> registra a feature ativa no
-          <code class="inline">state.md</code> e crava o <code class="inline">.sdd/lock</code>. O hook
-          <code class="inline">sdd-lock</code> impede outra janela de escrever fora da branch dona;
-          quando voltar, <i>"onde paramos?"</i> lê o <code class="inline">state.md</code> e retoma no ponto.</p>
-        <p>As skills também disparam sozinhas por linguagem natural — dizer <i>"quero uma feature
-          de X"</i> tende a acionar a <code class="inline">sdd-requirements</code>; <i>"implementa"</i> ou
-          <i>"segue"</i> aciona a <code class="inline">sdd-delivery</code>. Invocar por
-          <code class="inline">/nome</code> é só a forma explícita.</p>
+        <p style="margin-top:4px"><b>Trava &amp; retomar:</b> ao começar, o
+          <code class="inline">/sdd-kit:sdd-state</code> anota no <code class="inline">state.md</code> o
+          que está em andamento e ativa a trava. Se você (ou outra janela) tentar mexer em paralelo, a
+          trava avisa; e quando voltar depois, é só perguntar <i>"onde paramos?"</i> que ele lê o
+          <code class="inline">state.md</code> e retoma do ponto certo.</p>
+        <p>As skills também entendem linguagem natural — dizer <i>"quero uma funcionalidade de X"</i>
+          costuma acionar a de requisitos; <i>"implementa"</i> ou <i>"segue"</i> aciona a de
+          implementação. Chamar por <code class="inline">/nome</code> é só a forma explícita.</p>
       </section>
 
       <section id="exemplo">
         <h3 class="sec">Exemplo real</h3>
         <p class="sec-note">do pedido cru ao merge · resumido</p>
-        <p>Um pedido de produto de uma linha vira uma entrega auditável, sem pular etapas nem
-          gastar execução em cima de um pedido ainda ambíguo.</p>
+        <p>Um pedido de produto de uma linha vira uma entrega bem documentada, sem pular etapas nem
+          gastar tempo escrevendo código em cima de um pedido ainda confuso.</p>
 
         <div class="callout"><b>Você:</b> <i>"preciso de um campo novo no perfil do usuário
           para cadastrar um segundo telefone"</i></div>
@@ -785,11 +781,11 @@ O que BLOQUEIA um merge?</pre></li>
           <li><b>A <code class="inline">sdd-requirements</code> dispara</b> (o "preciso de…" já aciona).
             Ela lê a <code class="inline">constitution.md</code> e a <code class="inline">architecture.md</code>,
             descobre onde vive o perfil e como telefones são validados hoje.</li>
-          <li><b>Clarify — ela te devolve perguntas antes de escrever nada:</b> é opcional? tem tipo
-            (celular/fixo)? qual principal? valida DDD/país? aceita duplicado? impacta SMS/notificação?
-            LGPD? Você responde.</li>
+          <li><b>Perguntas — ela te devolve as dúvidas antes de escrever nada:</b> é opcional? tem tipo
+            (celular/fixo)? qual é o principal? valida DDD/país? aceita repetido? afeta SMS/notificação?
+            é dado pessoal (LGPD)? Você responde.</li>
           <li><b>Ela grava</b> <code class="inline">specs/001-segundo-telefone/requirements.md</code>
-            com <code class="inline">Status: awaiting_approval</code>:
+            (aguardando aprovação):
             <pre><span class="c"># escopo</span>
 dentro: campo "telefone secundário" opcional no perfil
 fora:   verificação por SMS · telefone como login
@@ -806,27 +802,27 @@ CA1 Dado um perfil sem 2º telefone, quando informo um número
     válido e salvo, então ele aparece salvo.
 CA2 Dado um número inválido, quando salvo, então vejo erro
     e nada é gravado.</pre></li>
-          <li><b>GATE.</b> Ela <b>para</b> e resume, pedindo aprovação. Nada de design, branch ou
-            código ainda. <span class="kbd">aprovado</span> → esta é a sua "história aprovada".</li>
+          <li><b>PARADA.</b> Ela <b>para</b> e resume, pedindo aprovação. Nada de plano nem código
+            ainda. <span class="kbd">aprovado</span> → esta é a sua "história aprovada".</li>
           <li><code class="inline">sdd-design</code> vira <code class="inline">design.md</code>
-            (onde tocar, riscos, como provar cada CA) →
+            (onde mexer, riscos, como provar cada combinado) →
             <code class="inline">sdd-backlog</code> quebra em <code class="inline">tasks.md</code>
-            (com <code class="inline">[P]</code> onde dá pra paralelizar).</li>
-          <li><code class="inline">sdd-analyze</code> confere: todo CA tem task? nada fora do escopo?
-            nada contra a constitution? <b>Consistente</b> → libera.</li>
-          <li><code class="inline">sdd-delivery</code> faz <b>uma task por turno</b> com TDD e cola a
-            evidência (teste verde). Repete até fechar o backlog.</li>
-          <li><code class="inline">sdd-acceptance</code> confere o diff da branch contra os requisitos
-            e escreve <code class="inline">acceptance.md</code> → <b>veredito aprovado</b>, pronto pra merge.</li>
+            (marcando o que dá pra fazer em paralelo).</li>
+          <li><code class="inline">sdd-analyze</code> confere: todo combinado tem tarefa? nada fora do
+            escopo? nada contra as regras? <b>Tudo batendo</b> → libera.</li>
+          <li><code class="inline">sdd-delivery</code> faz <b>uma tarefa por vez</b> (teste primeiro) e
+            cola a prova (o teste passando). Repete até acabar a lista.</li>
+          <li><code class="inline">sdd-acceptance</code> confere o que mudou no código contra o pedido
+            e escreve <code class="inline">acceptance.md</code> → <b>aprovado</b>, pronto pra juntar ao projeto.</li>
         </ol>
 
-        <p style="margin-top:16px">No fim, o repositório carrega a trilha inteira — do pedido de uma
-          linha ao veredito — sem depender do histórico da conversa:</p>
+        <p style="margin-top:16px">No fim, o repositório guarda o caminho inteiro — do pedido de uma
+          linha ao resultado — sem depender do histórico da conversa:</p>
         <div class="tree">specs/<span class="a">001-segundo-telefone/</span>
-├── <b>requirements.md</b>   <span style="color:var(--muted)"># approved</span>
-├── <b>design.md</b>         <span style="color:var(--muted)"># done</span>
-├── <b>tasks.md</b>          <span style="color:var(--muted)"># todas done + evidência</span>
-└── <span class="g">acceptance.md</span>     <span style="color:var(--muted)"># veredito: aprovado</span></div>
+├── <b>requirements.md</b>   <span style="color:var(--muted)"># aprovado</span>
+├── <b>design.md</b>         <span style="color:var(--muted)"># pronto</span>
+├── <b>tasks.md</b>          <span style="color:var(--muted)"># todas feitas + prova</span>
+└── <span class="g">acceptance.md</span>     <span style="color:var(--muted)"># resultado: aprovado</span></div>
       </section>
     </main>
   </div>
