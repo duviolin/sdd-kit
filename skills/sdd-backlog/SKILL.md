@@ -1,5 +1,6 @@
 ---
 name: sdd-backlog
+model: sonnet
 description: >-
   Use to break an approved design into executable, verifiable tasks. Auto-use
   when the user says "tasks", "tarefas", "backlog", "quebra o plano" for a

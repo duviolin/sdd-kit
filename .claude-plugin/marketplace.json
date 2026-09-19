@@ -11,7 +11,7 @@
       "name": "sdd-kit",
       "source": ".",
       "description": "Spec-Driven Development portátil: 9 skills sdd-* + templates, guidelines e trava de execução, com auditoria persistida no repo.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "workflow",
       "keywords": ["sdd", "spec-driven-development", "workflow", "qa"]
     }

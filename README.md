@@ -47,6 +47,7 @@ sdd-kit/
 │   ├── templates/          # CONSTITUTION ARCHITECTURE STATE requirements design tasks acceptance
 │   ├── guidelines/         # tdd test-strategy solid defensive-programming rich-domain dry kiss
 │   │                       # yagni clean-code error-handling secure-by-default code-review
+│   │                       # model-selection (qual modelo do Claude usar em cada fase)
 │   └── hooks/              # sdd-lock.py — o script da trava
 ├── docs/index.html         # documentação visual
 └── install.sh              # helper de teste local + validação
@@ -60,5 +61,13 @@ sdd-constitution → sdd-discovery → sdd-requirements → [APROVAÇÃO HUMANA]
 
 `sdd-state` é transversal: mantém `state.md` (o que está rodando, onde paramos) e `.sdd/lock`
 (uma feature ativa por vez). O hook `sdd-lock` reforça a trava bloqueando escrita fora da branch dona.
+
+## Modelo por fase (troca automática)
+
+Cada skill declara no frontmatter (`model:`) o modelo do Claude indicado pra fase — **Opus** pensa
+(constitution, discovery, requirements, design, acceptance), **Sonnet** executa (backlog, analyze,
+delivery) e **Haiku** anota (state). O Claude Code troca sozinho ao disparar a skill e reverte no
+próximo prompt; se você não tiver acesso ao modelo, ele mantém o atual (não quebra). O racional
+completo e como desligar/ajustar estão em `sdd/guidelines/model-selection.md`.
 
 Cada feature gera uma trilha versionada em `specs/<NNN>-<slug>/` no projeto-alvo.

@@ -1,5 +1,6 @@
 ---
 name: sdd-discovery
+model: opus
 description: >-
   Use to map or refresh a project's real technical architecture before speccing
   work. Auto-use when onboarding into an unfamiliar repo, when the user asks

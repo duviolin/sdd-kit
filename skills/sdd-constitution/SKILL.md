@@ -1,5 +1,6 @@
 ---
 name: sdd-constitution
+model: opus
 description: >-
   Use to define or update a project's non-negotiable engineering principles that
   govern every SDD phase. Auto-use when starting SDD on a project with no

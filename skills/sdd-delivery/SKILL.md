@@ -1,5 +1,6 @@
 ---
 name: sdd-delivery
+model: sonnet
 description: >-
   Use to implement an SDD feature task-by-task from the real project artifacts.
   Auto-use when the user says "implementa", "segue", "continua", "aprovado", or

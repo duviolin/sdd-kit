@@ -1,5 +1,6 @@
 ---
 name: sdd-acceptance
+model: opus
 description: >-
   Use to validate a finished SDD delivery against the branch diff before merge.
   Auto-use when the user says "valida", "validate", "aceita", "pronto pra merge",

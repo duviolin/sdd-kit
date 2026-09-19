@@ -1,5 +1,6 @@
 ---
 name: sdd-state
+model: haiku
 description: >-
   Manages the project's single execution state and lock. Auto-use when starting,
   pausing, resuming or finishing SDD work, when the user says "onde paramos",

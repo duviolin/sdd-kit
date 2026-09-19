@@ -1,5 +1,6 @@
 ---
 name: sdd-requirements
+model: opus
 description: >-
   Auto-use when the user wants a new feature, product/behavior change, API or
   contract change, or says anything like "quero", "preciso", "vamos fazer",

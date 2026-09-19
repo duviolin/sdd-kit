@@ -1,5 +1,6 @@
 ---
 name: sdd-design
+model: opus
 description: >-
   Use after a requirements doc is approved to design the technical plan. Auto-use
   when the user approves requirements and says "plano", "plan", "design", "como

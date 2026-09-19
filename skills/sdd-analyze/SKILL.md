@@ -1,5 +1,6 @@
 ---
 name: sdd-analyze
+model: sonnet
 description: >-
   Use to cross-check consistency across requirements, design and tasks before
   implementing. Auto-use when tasks.md is ready, or the user says "analisa",

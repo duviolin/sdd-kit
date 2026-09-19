@@ -174,7 +174,8 @@
     <div class="meta">
       <span class="chip"><b>9</b> skills</span>
       <span class="chip"><b>7</b> templates</span>
-      <span class="chip"><b>12</b> guidelines</span>
+      <span class="chip"><b>13</b> guidelines</span>
+      <span class="chip">modelo <b>por fase</b></span>
       <span class="chip">trava de <b>execução</b></span>
       <span class="chip">instala como <b>plugin</b></span>
       <span class="chip">roda em <b>qualquer projeto</b></span>
@@ -197,6 +198,7 @@
       <a href="#era">A nova era (com IA)</a>
       <a href="#flow">O fluxo</a>
       <a href="#skills">As 9 skills</a>
+      <a href="#modelos">Modelo por fase</a>
       <a href="#artifacts">Arquivos & histórico</a>
       <a href="#templates">Templates</a>
       <a href="#guidelines">Guidelines</a>
@@ -604,6 +606,50 @@
         </div>
       </section>
 
+      <section id="modelos">
+        <h3 class="sec">Modelo por fase</h3>
+        <p class="sec-note">troca automática · Opus pensa · Sonnet executa · Haiku anota</p>
+        <p>Cada fase do SDD tem uma demanda diferente: umas exigem <b>julgamento</b> (decidir escopo,
+          arquitetura, aprovar a entrega), outras são <b>mecânicas</b> (quebrar tarefas, anotar estado).
+          Por isso cada skill declara no topo — no campo <code class="inline">model:</code> — qual modelo
+          do Claude roda naquela fase. O Claude Code <b>troca sozinho</b> ao disparar a skill e volta ao
+          modelo da sessão no prompt seguinte. Você não precisa mexer no <code class="inline">/model</code>.</p>
+        <div class="pills">
+          <div class="pill"><code>Opus · pensa</code><span>constitution · discovery · requirements · design · acceptance — decisões de alto impacto e difíceis de reverter</span></div>
+          <div class="pill"><code>Sonnet · executa</code><span>backlog · analyze · delivery — trabalho estruturado, com bom custo-benefício</span></div>
+          <div class="pill"><code>Haiku · anota</code><span>state — bookkeeping trivial da trava e do "onde paramos"</span></div>
+        </div>
+
+        <h4>Por que isso vale a pena</h4>
+        <div class="skills">
+          <div class="card">
+            <div class="head"><code class="name">gasta onde importa</code></div>
+            <p>O modelo mais forte fica nas fases de <b>decisão</b>, onde um erro se propaga em cascata.
+              As fases mecânicas rodam num modelo mais barato — você não paga preço de Opus pra anotar
+              estado. Qualidade onde decide, economia onde executa.</p>
+          </div>
+          <div class="card">
+            <div class="head"><code class="name">zero fricção</code></div>
+            <p>A troca é <b>automática</b> ao disparar cada skill. Ninguém precisa lembrar de ajustar o
+              <code class="inline">/model</code> a cada etapa — o kit pilota o modelo por você.</p>
+          </div>
+          <div class="card">
+            <div class="head"><code class="name">seguro por padrão</code></div>
+            <p>Se o seu plano/organização não libera aquele modelo, a sessão <b>mantém o atual</b> em vez
+              de falhar. E o override dura só o turno e reverte — não sequestra a sua sessão.</p>
+          </div>
+          <div class="card">
+            <div class="head"><code class="name">ajustável</code></div>
+            <p>É um ponto de partida, não uma regra travada. Use o <code class="inline">/model</code> pra
+              sobrepor quando quiser (repo grande → Opus no discovery; task difícil → Opus no delivery).</p>
+          </div>
+        </div>
+        <div class="callout">Para <b>desligar</b> a troca de uma fase: troque o
+          <code class="inline">model:</code> daquela skill para <code class="inline">inherit</code>
+          (mantém o modelo da sessão) ou remova a linha. O racional completo vive em
+          <code class="inline">sdd/guidelines/model-selection.md</code>.</div>
+      </section>
+
       <section id="artifacts">
         <h3 class="sec">Arquivos & histórico</h3>
         <p class="sec-note">a trilha que fica no repositório</p>
@@ -663,6 +709,7 @@
           <div class="pill"><code>error-handling</code><span>erro é contrato, não detalhe</span></div>
           <div class="pill"><code>secure-by-default</code><span>o caminho fácil é o caminho seguro</span></div>
           <div class="pill"><code>code-review</code><span>o que autor entrega, o que revisor checa</span></div>
+          <div class="pill"><code>model-selection</code><span>qual modelo do Claude usar em cada fase</span></div>
         </div>
       </section>
 
