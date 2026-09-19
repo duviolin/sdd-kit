@@ -172,8 +172,8 @@
       esperar você aprovar e só então implementar — testando cada passo e deixando tudo registrado
       no próprio repositório.</p>
     <div class="meta">
-      <span class="chip"><b>9</b> skills</span>
-      <span class="chip"><b>7</b> templates</span>
+      <span class="chip"><b>10</b> skills</span>
+      <span class="chip"><b>8</b> templates</span>
       <span class="chip"><b>13</b> guidelines</span>
       <span class="chip">modelo <b>por fase</b></span>
       <span class="chip">trava de <b>execução</b></span>
@@ -197,7 +197,7 @@
       <a href="#sobre">Sobre o SDD</a>
       <a href="#era">A nova era (com IA)</a>
       <a href="#flow">O fluxo</a>
-      <a href="#skills">As 9 skills</a>
+      <a href="#skills">As 10 skills</a>
       <a href="#modelos">Modelo por fase</a>
       <a href="#artifacts">Arquivos & histórico</a>
       <a href="#templates">Templates</a>
@@ -519,7 +519,7 @@
       </section>
 
       <section id="skills">
-        <h3 class="sec">As 9 skills</h3>
+        <h3 class="sec">As 10 skills</h3>
         <p class="sec-note">o que cada uma faz e o que produz</p>
         <div class="skills">
           <div class="card">
@@ -606,6 +606,15 @@
               uma sobrescreva o trabalho da outra.</p>
             <div class="out">→ <b>state.md</b> + a trava · retoma de onde parou</div>
           </div>
+
+          <div class="card">
+            <div class="head"><span class="num">📊</span><code class="name">sdd-report</code></div>
+            <div class="role">métricas &amp; relatório · quando quiser</div>
+            <p>Junta o <b>esforço</b> (tokens, tempo, custo estimado, por feature e por fase — lido dos
+              registros locais) com a <b>qualidade</b> (evidências, gates, veredito — lida dos artefatos)
+              e monta um relatório pra <b>justificar/analisar</b> o uso do SDD. Nada sai da máquina.</p>
+            <div class="out">→ <b>report.md</b> · custo, tempo e governança da entrega</div>
+          </div>
         </div>
       </section>
 
@@ -670,7 +679,8 @@
         ├── <b>requirements.md</b>            <span style="color:var(--muted)"># o quê e por quê + combinados</span>
         ├── <b>design.md</b>            <span style="color:var(--muted)"># o plano técnico + como testar</span>
         ├── <b>tasks.md</b>           <span style="color:var(--muted)"># as tarefas + casos de erro + a prova</span>
-        └── <span class="g">acceptance.md</span>         <span style="color:var(--muted)"># o resultado final da entrega</span></div>
+        ├── <span class="g">acceptance.md</span>         <span style="color:var(--muted)"># o resultado final da entrega</span>
+        └── <b>report.md</b>             <span style="color:var(--muted)"># métricas: tokens, tempo, custo, governança (opcional)</span></div>
         <p style="margin-top:16px">Cada arquivo tem um campo <code class="inline">Status:</code> no
           topo. O andamento vive no arquivo, não na conversa — por isso dá pra <b>retomar (ou revisar)
           sem depender do chat</b>.</p>
@@ -680,7 +690,7 @@
         <h3 class="sec">Templates</h3>
         <p class="sec-note">sdd/templates/ (no plugin)</p>
         <p>Modelos prontos que as skills copiam e preenchem, pra toda funcionalidade seguir a mesma
-          estrutura. São sete:</p>
+          estrutura. São oito:</p>
         <div class="pills">
           <div class="pill"><code>constitution.md</code><span>as regras do projeto e o mínimo de qualidade</span></div>
           <div class="pill"><code>architecture.md</code><span>componentes, integrações e decisões</span></div>
@@ -689,6 +699,7 @@
           <div class="pill"><code>design.md</code><span>o plano: onde mexer, riscos e como testar</span></div>
           <div class="pill"><code>tasks.md</code><span>tarefas com origem, prova esperada e status</span></div>
           <div class="pill"><code>acceptance.md</code><span>bate com o pedido? testes? o veredito final</span></div>
+          <div class="pill"><code>report.md</code><span>tokens, tempo, custo e governança da entrega</span></div>
         </div>
       </section>
 
