@@ -56,8 +56,13 @@ sdd-kit/
 ## Fluxo
 
 ```
-sdd-constitution → sdd-discovery → sdd-requirements → [APROVAÇÃO HUMANA] → sdd-design → sdd-backlog → sdd-analyze → sdd-delivery → sdd-acceptance
+sdd-constitution → sdd-discovery → sdd-requirements → [APROVAÇÃO HUMANA] → sdd-design → sdd-backlog → sdd-analyze → sdd-delivery ⟳ → sdd-acceptance
+                                                                                                        (⟳ 1 task → prova → seu ok → próxima)
 ```
+
+Você aprova em **dois momentos**: no pedido (`sdd-requirements` sempre para e espera o "aprovado")
+e **a cada task** — `sdd-delivery` fecha uma task com a prova, para, e só segue pra próxima com o seu
+ok. Assim o desvio aparece cedo, não no fim.
 
 `sdd-state` é transversal: mantém `state.md` (o que está rodando, onde paramos) e `.sdd/lock`
 (uma feature ativa por vez). O hook `sdd-lock` reforça a trava bloqueando escrita fora da branch dona.
@@ -67,7 +72,8 @@ sdd-constitution → sdd-discovery → sdd-requirements → [APROVAÇÃO HUMANA]
 Cada skill declara no frontmatter (`model:`) o modelo do Claude indicado pra fase — **Opus** pensa
 (constitution, discovery, requirements, design, acceptance), **Sonnet** executa (backlog, analyze,
 delivery) e **Haiku** anota (state). O Claude Code troca sozinho ao disparar a skill e reverte no
-próximo prompt; se você não tiver acesso ao modelo, ele mantém o atual (não quebra). O racional
-completo e como desligar/ajustar estão em `sdd/guidelines/model-selection.md`.
+próximo prompt. Não há cadeia de fallback: se você não tiver o modelo, ele **mantém o da sessão**
+(não quebra) — por isso rode a sessão no melhor modelo que você tem, que o fallback já fica bom. O
+racional completo, a estratégia de fallback e como desligar/ajustar estão em `sdd/guidelines/model-selection.md`.
 
 Cada feature gera uma trilha versionada em `specs/<NNN>-<slug>/` no projeto-alvo.

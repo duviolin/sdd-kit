@@ -33,6 +33,9 @@ Executa as tasks de `specs/<NNN>-<slug>/tasks.md` a partir dos artefatos reais d
    (o vermelho inicial e o verde final). Sem evidência, a task fica `in_progress` ou `blocked`
    (com o motivo), nunca `done`.
 5. Atualizar a tabela-resumo de `tasks.md`.
+6. **Parar e aguardar o humano.** Encerrar o turno mostrando a task fechada e a evidência; só seguir
+   pra próxima task no próximo turno, quando o humano der o ok ("segue", "continua", "aprovado").
+   Nunca emendar duas tasks no mesmo turno.
 
 ## Regras
 

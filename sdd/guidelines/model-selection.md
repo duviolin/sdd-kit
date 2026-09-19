@@ -59,6 +59,22 @@ Overrides manuais quando quiser fugir do default:
 Para **desligar** a troca automática de uma fase: troque o valor de `model:` para `inherit`
 (mantém o modelo da sessão) ou remova a linha do frontmatter daquela skill.
 
+## E se você não tiver o modelo?
+
+Não existe cadeia de fallback nativa ("tenta Opus, senão Sonnet, senão..."): o campo `model:` aceita
+**um valor só**. Quando esse modelo não está disponível (allowlist da org, ou auto/plan mode que não o
+suporta), o Claude Code **mantém o modelo atual da sessão** — não troca e não quebra.
+
+Ou seja, **o fallback é sempre o modelo padrão da sessão** — e é aí que mora a escolha inteligente:
+
+- **Rode a sessão no melhor modelo que você tem.** Com Opus, as fases de decisão sobem pra Opus e as
+  demais descem pra Sonnet/Haiku. Sem Opus (sessão em Sonnet), as fases que pedem Opus caem no Sonnet —
+  uma degradação sensata — e as de execução/registro seguem em Sonnet/Haiku.
+- O `model:` por fase só **melhora** quando o modelo pedido existe; quando não, cai no seu default.
+  Escolher bem o default da sessão é o que torna o fallback bom.
+- Não tem Opus e quer mais qualidade nas fases de decisão sem trocar de modelo? Suba o `effort` da
+  sessão nessas fases (constitution, requirements, design, acceptance) em vez de trocar o modelo.
+
 ## Anti-padrões
 
 - Usar Opus pra `sdd-state` (anotar onde parou) — custo alto pra ganho nenhum.
