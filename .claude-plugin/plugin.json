@@ -1,7 +1,7 @@
 {
   "name": "sdd-kit",
   "description": "Spec-Driven Development portátil: 10 skills sdd-* (constitution, discovery, requirements, design, backlog, analyze, delivery, acceptance, state, report) + templates, guidelines e trava de execução. Roda em qualquer projeto com auditoria persistida no repo.",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "author": {
     "name": "Eduardo Lima"
   },
